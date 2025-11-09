@@ -264,6 +264,8 @@ If you want the complete operating system:
 
 ### Hybrid AI Architecture
 
+![Hybrid AI Architecture](docs/images/hybrid-ai-architecture.png)
+
 * [`hybrid-ai.mmd`](docs/architecture/diagrams/hybrid-ai.mmd) — Hybrid AI architecture (local + cloud planning)
 * [`cse-guardrails.mmd`](docs/architecture/diagrams/cse-guardrails.mmd) — CSE approval and redline workflow
 * [`hybrid-mode-switch.mmd`](docs/architecture/diagrams/hybrid-mode-switch.mmd) — Mode switching FSM (local/hybrid/cloud-enhanced)
