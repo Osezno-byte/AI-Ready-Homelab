@@ -254,6 +254,8 @@ If you want the complete operating system:
 
 ## ✅ Architecture Diagrams
 
+**Visual Gallery**: See all diagrams rendered in [`docs/architecture/diagrams/README.md`](docs/architecture/diagrams/README.md)
+
 ### Core Architecture
 
 * [`local-ai-ops.mmd`](docs/architecture/diagrams/local-ai-ops.mmd) — Local-first AI operations
