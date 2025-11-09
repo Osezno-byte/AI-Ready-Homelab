@@ -287,8 +287,7 @@ If you want the complete operating system:
 * [`sre-kit/`](sre-kit/) - Complete SRE governance templates
 
 ### Comparisons & Positioning
-* [`docs/comparisons/vs-homelab-mcp-repos.md`](docs/comparisons/vs-homelab-mcp-repos.md) — Why this is a framework, not a tool list
-* [`COMPETITORS.md`](COMPETITORS.md) — Full competitor tracking and differentiation strategy
+* [`docs/comparisons/vs-homelab-mcp-repos.md`](docs/comparisons/vs-homelab-mcp-repos.md) — How this framework relates to other homelab projects
 
 ---
 
@@ -380,19 +379,24 @@ This is a governance and operations framework for people who want reliability, p
 
 ---
 
-## ✅ How This Compares to Other Projects
+## ✅ How This Fits Into the Ecosystem
 
-### vs bjeans/homelab-mcp
+The AI homelab space is evolving quickly, and several projects tackle parts of the problem.
+This framework takes a different approach by focusing on governance, safety, and AI-operable infrastructure.
+
+### Related Projects
+
+#### bjeans/homelab-mcp
 
 **They provide**: MCP servers for Docker, Ollama, Pi-hole, Unifi
 **We provide**: Complete operating framework with governance + runbooks + privacy-first AI
 
-### vs ai-stack-homelab
+#### ai-stack-homelab
 
 **They provide**: Local AI deployment stack
 **We provide**: AI-operable infrastructure with SRE discipline + safety guardrails
 
-### vs awesome-mcp-servers
+#### awesome-mcp-servers
 
 **They provide**: Catalog of available MCP tools
 **We provide**: Complete methodology for operating infrastructure with those tools
