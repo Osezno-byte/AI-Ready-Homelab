@@ -179,7 +179,7 @@ Enable pfSense firewall rules to block all LAN → IoT VLAN traffic except speci
 **Effort**: 7.5 hours total
 
 **Summary**:
-Added HTTP REST API layer to all 7 existing MCP servers to enable n8n automation workflows. MCP servers now support BOTH stdio transport (for Claude Code) and HTTP transport (for n8n).
+Added HTTP REST API layer to all 7 existing MCP servers to enable n8n automation workflows. MCP servers now support BOTH stdio transport (for local AI) and HTTP transport (for n8n).
 
 **Results**:
 - Phase 1: All 7 HTTP servers operational (ports 8091-8098)

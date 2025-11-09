@@ -1,5 +1,7 @@
 # STATUS.md Workflow Guide
 
+**Last Updated**: 2025-11-09
+
 **Purpose**: Maintain a living snapshot of your infrastructure health
 **Frequency**: Update daily (quick) or weekly (detailed)
 **Time Required**: 5-10 minutes per update

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions / Usage
+    url: https://github.com/Osezno-byte/AI-Ready-Homelab/discussions
+    about: Ask questions or share examples in Discussions.
