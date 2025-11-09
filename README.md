@@ -363,10 +363,10 @@ Hybrid mode is optional and only uses cloud AI for planning, with mandatory sani
 ### What hardware do I need for local AI?
 
 **Minimum**: 16GB RAM, 20GB disk, CPU inference (llama3.1:8b or mistral:7b)
-**Recommended**: 32-64GB RAM, 100GB disk, NVIDIA GPU with 24GB+ VRAM for larger models
-**Optimal**: 64-128GB RAM, 500GB SSD, NVIDIA GPU with 48GB+ VRAM for multiple models
+**Recommended**: 32-64GB RAM, 100GB disk, NVIDIA GPU with 8-24GB VRAM for moderate model sizes
+**Optimal**: 64-128GB RAM, 500GB SSD, NVIDIA GPU with 24GB+ VRAM for multiple models or larger contexts
 
-You can start with CPU-only and upgrade later.
+You can start with CPU-only and upgrade later. Many users run the framework successfully on modest hardware.
 
 ### Is this only for homelabs?
 
@@ -466,6 +466,7 @@ See [LICENSE](LICENSE) for details.
 - **GitHub Discussions**: Ask questions, share implementations
 - **GitHub Issues**: Report bugs, request features
 - **Documentation**: Complete guides in [`docs/`](docs/)
+- **Security Policy**: See [SECURITY.md](SECURITY.md) for reporting vulnerabilities
 
 This project is fully open-source and designed for self-guided adoption.
 Most users will implement the framework independently or with help from the community.
@@ -492,7 +493,7 @@ A lightweight assessment of service layout, segmentation, logging, backup covera
 Help defining safe boundaries for automation, including approval workflows, redlines, and operational policies.
 
 Support is collaborative, scoped per request, and intended to help users who want a structured path into the framework.
-To inquire, open a private thread in GitHub Discussions describing your homelab, goals, and any specific areas where you want help.
+To inquire, start a thread in GitHub Discussions describing your homelab, goals, and any specific areas where you want help.
 
 If you prefer to learn independently, the documentation, diagrams, and STATUS workflow are enough to implement the full framework.
 Support is available only for those who want additional guidance or a second set of eyes on their environment.

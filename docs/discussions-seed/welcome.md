@@ -14,7 +14,7 @@ Feel free to introduce yourself in Discussions and share your implementation jou
 
 ## How to Request Support
 
-If you'd like assistance, open a private thread in GitHub Discussions with the following:
+If you'd like assistance, start a thread in GitHub Discussions with the following:
 
 **Environment Summary**
 - Hardware (CPU/GPU, RAM)

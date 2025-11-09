@@ -1,5 +1,7 @@
 # INCIDENT REPORT TEMPLATE
 
+**Last Updated**: 2025-11-09 | **Version**: 1.0.0
+
 **Incident ID**: INC-YYYY-MM-DD-NNN
 **Date**: YYYY-MM-DD
 **Severity**: CRITICAL | HIGH | MEDIUM | LOW
