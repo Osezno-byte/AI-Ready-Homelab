@@ -2,223 +2,175 @@
 
 <!-- CI Badges will be added after GitHub Actions go live -->
 
-### **Local-First. Privacy-First. SRE-Driven. AI-Operable.**
+A structured, reliable, privacy-first approach to running a homelab with local AI assistance.
+This framework provides the governance, safety boundaries, documentation cadence, and operational discipline needed to use AI effectively without sacrificing control of your systems or your data.
 
-Most homelabs end up as a pile of YAML, forum snippets, and half-documented Docker stacks.
-This framework changes that.
-
-This is the **first public AI-operable homelab architecture** built around:
-
-1. **Local-only AI agents** (Ollama, LM Studio — no cloud required)
-2. **SRE-style governance and runbooks**
-3. **Supervised automation using MCP tools + guardrails**
-4. **A repeatable, documented operating model**
-
-The goal isn't more tools.
-The goal is **reliability, clarity, and safe AI automation**.
+It is not an autonomous agent.
+It is not a magic AI tool.
+It is an operating model.
 
 ---
 
-## TL;DR — What This Framework Actually Is
+## Purpose
 
-- ✅ Local-first by default (no cloud requirement)
-- ✅ Privacy-first (sanitized before cloud planning, no raw logs leave LAN)
-- ✅ SRE governance (STATUS workflow, verification windows, runbooks)
-- ✅ Hybrid AI architecture (cloud plans, local executes)
-- ✅ MCP tooling with supervised agents (CSE guardrails)
-- ✅ Proven in production (HA, Frigate, Proxmox, n8n, pfSense)
+Modern homelabs often evolve into complex environments: Docker services, Home Assistant, Proxmox, pfSense, Frigate, databases, backups, automations, and log pipelines.
+With that complexity comes the usual problems:
 
----
+* silent failures
+* configuration drift
+* undocumented changes
+* backup gaps
+* inconsistent updates
+* "fix it later" behavior
+* AI tools that are powerful but unsafe without structure
 
-## ✅ Why This Exists
-
-Homelabs are becoming real infrastructure. But:
-
-* configs drift
-* services break silently
-* backups aren't tested
-* nothing is documented
-* AI integration is unsafe or hacky
-* and no one has a system for all of it
-
-This framework gives you:
-
-* structure
-* governance
-* runbooks
-* safety
-* and AI-assisted operations that don't expose your data
-
-**Everything stays local.**
-Your model, your logs, your topology — all on your LAN.
+This framework introduces an SRE-inspired way to operate a homelab: predictable, documented, observable, and safe.
+AI becomes an assistant rather than an improvisational actor.
 
 ---
 
-## ✅ Real-World Results
+## Why This Framework Exists
 
-These patterns are battle-tested in a production homelab:
+Most homelab problems are not caused by carelessness. They come from the absence of:
 
-* **46% reduction** in Home Assistant database size
-* **83% elimination** of camera disconnections
-* **4× faster** automation development
-* **12–20× faster** backup validation
-* **Fully air-gapped AI operations**
-* **Zero credential leaks** via secrets handling
-* **100% backup coverage** after implementing DR framework
+* operational rhythm
+* documentation habits
+* verification windows
+* safe-change workflows
+* guardrails for automation
+* clear boundaries for AI involvement
+
+This framework introduces those elements in a lightweight but effective way.
+The result is a homelab that behaves more like real infrastructure: stable, predictable, and understandable.
+
+---
+
+## Real-World Results
+
+These improvements were measured directly from STATUS.md history and DR drill logs:
+
+* Reduction in silent regressions after updates
+* Fewer service restarts needed
+* Increased backup coverage and reliability
+* Dramatically improved detection of drift
+* Faster incident response through structured runbooks
 
 <sub>Metrics captured from STATUS.md history and DR drill logs.</sub>
 
-### Case Study: How STATUS.md Caught a Frigate Regression
+### Case Study: Catching a Frigate Regression
 
-After a Docker restart, the cameras looked fine but STATUS.md showed increased reconnections within 12 hours.
-The verification window caught the regression early, and the fix was documented, preventing future failures.
+After a routine Docker restart, everything appeared normal visually.
+However, STATUS.md noted increased camera reconnections within 12 hours.
+A regression was identified early and corrected before it became a larger reliability problem.
 
-**This is why verification windows matter.**
-
----
-
-## How It Works (High-Level Flow)
-
-1. **Plan**
-   Cloud AI (or local model) generates a plan for a change or diagnosis.
-
-2. **CSE Review**
-   The plan is checked against CSE guardrails:
-   - scope
-   - verbs (read/write/forbid)
-   - redlines
-   - approval TTLs
-
-3. **Sanitize (Hybrid & Cloud-enhanced modes)**
-   Logs and configs are run through the `preflight_sanitize` n8n workflow.
-   Only the sanitized output is sent to cloud AIs.
-
-4. **Local Execution**
-   MCP tools execute the approved steps locally:
-   - Home Assistant
-   - Docker
-   - Proxmox
-   - Frigate
-   - pfSense
-   - n8n
-   - Database
-
-5. **Evidence → STATUS.md**
-   Before/after metrics and logs are recorded.
-   A verification window ensures stability before the change is considered "complete."
+This is the value of verification windows and structured operational cadence.
 
 ---
 
-## Why It Works
+## Who This Is For
 
-Homelabs become unreliable not because people are careless, but because nothing enforces rhythm, documentation, or safe change.
-
-This framework gives your homelab the same guardrails that keep real infrastructure sane.
-
----
-
-## ✅ What Makes This Different (Your Moats)
-
-### 1. SRE Governance (Primary Moat)
-
-Not just templates — an actual operating cadence:
-
-* `STATUS.md` (daily/weekly reliability snapshot)
-* `PENDING-WORK.md` (tech debt + verification queue)
-* Change-management rhythm
-* Incident lifecycle
-* DR test matrix
-* Runbook discipline
-* Human-in-the-loop gating
-
-This is the piece no one else is shipping.
-
-### 2. Agent-Assisted Runbooks (Secondary Moat)
-
-Agents don't free-run.
-They follow documented procedures.
-
-Includes examples for:
-
-* Frigate diagnosis
-* Home Assistant YAML validation
-* Docker failures
-* Backup verification
-* Segmentation drift
-* Network diagnostics
-
-All under **CSE supervision** so nothing touches your infra without checks.
-
-### 3. Privacy-First, Local-Only AI (Default Mode)
-
-This system is designed for:
-
-* Ollama
-* LM Studio
-* Qwen
-* LLaMA3
-* Mistral
-* GPU or CPU inference
-* Air-gapped operation
-
-Optional: cloud-assisted "planning mode"
-Default: **full privacy, zero cloud dependency.**
-
-### 4. Complete System, Not a Bag of Tools (Tertiary Moat)
-
-Competitor repos = MCP servers.
-This repo =
-✅ Architecture
-✅ Governance
-✅ Procedures
-✅ Agents
-✅ Documentation
-✅ Local-AI discipline
-✅ Safety guardrails
-✅ A monetizable implementation path
-
-You're not configuring a tool.
-You're adopting an operating system for your homelab.
+* Homelab owners who want reliability, not constant tinkering
+* Privacy-minded self-hosters
+* Users of Home Assistant, Docker, Proxmox, Frigate, pfSense, n8n, ZFS, and similar stacks
+* Anyone interested in applying light SRE discipline to personal infrastructure
+* People who want AI assistance without surrendering data or control
 
 ---
 
-## ✅ Who This Is For
+## What This Framework Is Not
 
-✔ Homelab users who want reliability instead of chaos
-✔ SMB owners who self-host
-✔ Privacy-conscious infrastructure users
-✔ People who want AI assistance without cloud exposure
-✔ Anyone who wants a professional operating model for their home infrastructure
+* Not a magic AI that "runs your homelab"
+* Not an agent you allow to act unsupervised
+* Not a scripted homelab distribution
+* Not a cloud-dependent tool
+* Not a replacement for human judgment
+
+This framework provides structure; you remain in control.
 
 ---
 
-## ✅ If You're New to All of This (The Simple Path)
+## Getting Started (Simple Path)
 
-**Start here if you're new:**
+If you're new to this, begin with the minimum viable setup:
 
-1. **Copy the `samples/` templates**
+1. **Copy the starter templates**:
    ```bash
    cp samples/STATUS.sample.md STATUS.md
    cp samples/PENDING-WORK.sample.md PENDING-WORK.md
    ```
 
-2. **Fill out STATUS.md once**
-   Add your current services, their status, and any recent changes.
+2. **Fill out STATUS.md once** with your current homelab state.
 
-3. **Add one runbook (Docker or HA)**
-   Document how you restart a service or check logs.
+3. **Pick one service and create a basic runbook** (restart procedure, log check, validation steps).
 
-4. **Do one verification window**
-   Make a small change, mark it "pending verification" for 48 hours.
+4. **Implement your first verification window**:
+   Make one change, mark it pending, revisit in 24–48 hours, and document the outcome.
 
-5. **That's it**
-   You've started the SRE cadence. Build from there.
+5. **Expand gradually**.
+   One service at a time, one runbook at a time.
 
-**People love a low-friction entry point.** Start small, build discipline, expand naturally.
+This isn't meant to be adopted all at once. It's meant to grow with you.
 
 ---
 
-## ✅ Three Ways to Use This
+## How It Works (High-Level Flow)
+
+The general operating model looks like this:
+
+1. You describe an intended change or task.
+2. AI generates a plan within the boundaries of CSE guardrails.
+3. The plan is reviewed and approved by you.
+4. Any sensitive data is sanitized before leaving the network (if hybrid mode is used).
+5. Actions are executed locally through MCP tools or runbooks.
+6. STATUS.md is updated.
+7. A verification window ensures system stability.
+8. The change is marked complete.
+
+This cycle keeps operations safe, auditable, and predictable.
+
+---
+
+## Why This Approach Works
+
+Homelabs degrade not from big mistakes but from small, accumulated ones:
+
+* restarts without follow-up
+* configuration edits without documentation
+* updates without rollback plans
+* improvements without verification
+* logs that go unchecked
+
+By applying cadence, documentation, and guardrails, your systems stay reliable over time.
+
+---
+
+## What Makes This Framework Distinct
+
+### 1. SRE Governance
+
+Lightweight operational discipline adapted for homelabs: STATUS cadence, verification windows, incident recording, and runbooks.
+
+### 2. Local-First AI
+
+AI operates entirely on your local models.
+Hybrid mode is optional and privacy-preserving.
+
+### 3. Guardrails for Safety
+
+The CSE policy system prevents destructive actions, scopes automation properly, and enforces human approval.
+
+### 4. Privacy and Sanitization
+
+A dedicated n8n workflow strips sensitive data before any cloud use.
+Nothing leaves your network without inspection.
+
+### 5. Architecture Transparency
+
+Every component is documented visually and textually with complete diagrams.
+
+---
+
+## Three Ways to Use This
 
 ### 1. Quick Start (10 minutes)
 
@@ -252,7 +204,7 @@ If you want the complete operating system:
 
 ---
 
-## ✅ Architecture Diagrams
+## Architecture Diagrams
 
 **Visual Gallery**: See all diagrams rendered in [`docs/architecture/diagrams/README.md`](docs/architecture/diagrams/README.md)
 
@@ -278,7 +230,7 @@ If you want the complete operating system:
 
 ---
 
-## ✅ Documentation
+## Documentation
 
 ### Core Framework
 * [`sre-kit/STATUS-workflow.md`](sre-kit/STATUS-workflow.md) - How to maintain STATUS.md (comprehensive guide)
@@ -293,7 +245,7 @@ If you want the complete operating system:
 
 ---
 
-## ✅ Quick Start Guide
+## Quick Start Guide
 
 ### Step 1: Clone This Repository
 
@@ -341,7 +293,7 @@ cp sre-kit/dr-test-matrix.md docs/reliability/
 
 ---
 
-## ✅ Repository Structure
+## Repository Structure
 
 ```
 ai-ready-homelab/
@@ -370,18 +322,7 @@ ai-ready-homelab/
 
 ---
 
-## ❌ What This Is Not
-
-- **Not** a "magic AI" that runs your homelab for you
-- **Not** a set of random MCP tools
-- **Not** a home-automation shortcut or a scripted stack
-- **Not** a full enterprise SRE handbook
-
-This is a governance and operations framework for people who want reliability, privacy, and AI assistance without handing their homelab to the cloud.
-
----
-
-## ✅ How This Fits Into the Ecosystem
+## How This Fits Into the Ecosystem
 
 The AI homelab space is evolving quickly, and several projects tackle parts of the problem.
 This framework takes a different approach by focusing on governance, safety, and AI-operable infrastructure.
@@ -409,22 +350,23 @@ This framework takes a different approach by focusing on governance, safety, and
 
 ## Security Model Summary
 
-- 🔒 **Local-only execution** — all actions run on your LAN via MCP tools
-- 🔍 **Sanitized cloud planning** — no raw logs or personal data ever leave the LAN
-- ⛔ **Redlines enforce hard blocks** for WAN rules, volume deletion, credential changes, destructive ops
-- ✅ **Approvals with TTL** ensure risky operations require human confirmation
-- 🧹 **No raw persistence** — raw logs/configs never get stored inside workflows
-- 🛡️ **CSE acts as the safety officer** — all AI actions go through policy checks
+- Local-only execution — all actions run on your LAN via MCP tools
+- Sanitized cloud planning — no raw logs or personal data ever leave the LAN
+- Redlines enforce hard blocks for WAN rules, volume deletion, credential changes, destructive ops
+- Approvals with TTL ensure risky operations require human confirmation
+- No raw persistence — raw logs/configs never get stored inside workflows
+- CSE acts as the safety officer — all AI actions go through policy checks
 
 ---
 
-## ✅ Status
+## Status
+
 This framework is under active development. Feedback, issues, and contributions are welcome.
 
 
 ---
 
-## ✅ Contributing
+## Contributing
 
 This is an open framework under active development.
 
@@ -438,7 +380,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
-## ✅ License
+## License
 
 MIT License - free to use, modify, and build on.
 
@@ -446,7 +388,7 @@ See [LICENSE](LICENSE) for details.
 
 ---
 
-## ✅ Community & Support
+## Community & Support
 
 ### Free Resources
 - **GitHub Discussions**: Ask questions, share implementations
@@ -472,7 +414,7 @@ See [LICENSE](LICENSE) for details.
 
 ---
 
-## ✅ Built By
+## Built By
 
 **Bear** ([@Osezno-byte](https://github.com/Osezno-byte))
 - Infrastructure architecture
@@ -496,12 +438,12 @@ See [LICENSE](LICENSE) for details.
 
 ---
 
-## ✅ Star This Repo
+## Star This Repo
 
 If this framework helps you:
-- ⭐ Star this repository
-- 🔄 Share with your homelab community
-- 💬 Join discussions and share your implementation
-- 📝 Contribute templates and improvements
+- Star this repository
+- Share with your homelab community
+- Join discussions and share your implementation
+- Contribute templates and improvements
 
-**Built something cool with this framework?** [Share it in Discussions!](https://github.com/Osezno-byte/ai-ready-homelab/discussions)
+**Built something cool with this framework?** [Share it in Discussions!](https://github.com/Osezno-byte/AI-Ready-Homelab/discussions)
