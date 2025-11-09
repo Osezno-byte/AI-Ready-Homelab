@@ -25,11 +25,8 @@ STATUS.md
 PENDING-WORK.md
 INSTRUCTIONS.md
 
-# Private strategy documents (not for public repo)
+# Internal documentation
 .private-docs/
-COMPETITORS.md
-REDDIT-LAUNCH-POST.md
-LAUNCH-CHECKLIST.md
 
 # Logs
 *.log
@@ -45,4 +42,3 @@ __pycache__/
 tmp/
 temp/
 *.tmp
-commercial/
