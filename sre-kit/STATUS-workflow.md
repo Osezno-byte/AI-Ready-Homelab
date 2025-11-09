@@ -171,6 +171,49 @@ Use sequential IDs for tracking:
 
 ---
 
+## ✅ Safety Practices
+
+### Mode Change Checklist
+
+When switching between local-only, hybrid, and cloud-enhanced modes:
+
+1. **Document the change** in STATUS.md with rationale
+2. **Verify CSE policy** matches the new mode requirements
+3. **Test redaction** if moving to hybrid/cloud-enhanced
+4. **Validate rollback** procedure before enabling cloud components
+5. **Record the mode** in git commit message
+
+### Preflight Sanitize (Hybrid / Cloud-enhanced)
+
+- Before any cloud planning, POST logs/configs to `tools/n8n/preflight_sanitize` and use only the `sanitized` output.
+- Never persist raw inputs in n8n.
+- Record the sanitize action in STATUS with a link to the evidence (hash/size only).
+
+**Example usage**:
+```bash
+# Send diagnostics for sanitization
+curl -X POST http://localhost:5678/webhook/sanitize \
+  -H "Content-Type: application/json" \
+  -d '{"logs": "$(cat error.log)", "config": "$(cat service.yml)"}' \
+  > sanitized-output.json
+
+# Use only the sanitized field for cloud planning
+jq '.sanitized' sanitized-output.json > cloud-input.txt
+```
+
+**Redaction coverage**:
+- Bearer tokens and API keys
+- Passwords and secrets (key-value pairs)
+- Environment variables (SECRET, TOKEN, KEY suffixes)
+- Email addresses
+- External IPv4 addresses (preserves RFC1918 private IPs)
+- MAC addresses
+- URL query parameters (token, key, sig, auth)
+- GPS coordinates
+- Home addresses
+
+---
+
 ## ✅ Common Mistakes to Avoid
 
 ### Mistake 1: Marking Things "Completed" Too Soon

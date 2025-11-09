@@ -1,0 +1,35 @@
+name: CSE Policy Validation
+
+on:
+  pull_request:
+    paths:
+      - 'sre-kit/**/*.yaml'
+      - 'sre-kit/**/*.yml'
+      - 'cse-policy*.yml'
+      - 'cse-policy*.yaml'
+      - 'tools/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Validate CSE policies
+        run: |
+          set -e
+          python tools/cse_policy_validator.py sre-kit/examples/cse-policy.example.yaml
+          # Validate any additional policies you add later
+          for f in $(git ls-files | grep -E 'cse-policy.*\\.ya?ml$|sre-kit/.*/cse-.*\\.ya?ml' || true); do
+            echo "Validating $f"
+            python tools/cse_policy_validator.py "$f"
+          done

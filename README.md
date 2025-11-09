@@ -169,6 +169,14 @@ These patterns are battle-tested in a production homelab:
 * [`local-ai-ops.mmd`](docs/architecture/diagrams/local-ai-ops.mmd) — Local-first AI operations
 * [`network.mmd`](docs/architecture/diagrams/network.mmd) — VLAN-segmented homelab
 * [`services.mmd`](docs/architecture/diagrams/services.mmd) — Agents + services + MCP flow
+* [`hybrid-ai.mmd`](docs/architecture/diagrams/hybrid-ai.mmd) — Hybrid AI architecture (local + cloud planning)
+* [`cse-guardrails.mmd`](docs/architecture/diagrams/cse-guardrails.mmd) — CSE approval and redline workflow
+* [`hybrid-mode-switch.mmd`](docs/architecture/diagrams/hybrid-mode-switch.mmd) — Mode switching FSM (local/hybrid/cloud-enhanced)
+
+### Privacy Guardrails
+
+* [`tools/n8n/preflight_sanitize.n8n.json`](tools/n8n/preflight_sanitize.n8n.json) — n8n workflow for redacting secrets before cloud planning
+* [`.github/workflows/cse-policy-validate.yml`](.github/workflows/cse-policy-validate.yml) — CI validation for CSE policy files
 
 ---
 

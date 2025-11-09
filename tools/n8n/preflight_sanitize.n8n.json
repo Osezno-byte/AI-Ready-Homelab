@@ -1,0 +1,42 @@
+{
+  "name": "preflight_sanitize",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "sanitize",
+        "responseMode": "lastNode",
+        "options": { "responseData": { "response": "json" } }
+      },
+      "id": "WebhookTrigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [ 200, 240 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const payload = items[0].json || {};\n\n// Convert any string-like entries to strings and join arrays\nfunction toStr(v){\n  if (Array.isArray(v)) return v.map(x=>String(x||'')).join('\\n');\n  if (v === null || v === undefined) return '';\n  if (typeof v === 'object') return JSON.stringify(v, null, 2);\n  return String(v);\n}\n\n// Flatten selected fields into a big text blob\nconst fields = ['logs','config','env','notes','diagnostics'];\nlet blob = '';\nfor(const k of fields){\n  if (payload[k] !== undefined) blob += `\\n\\n## ${k.toUpperCase()}\\n` + toStr(payload[k]);\n}\n\n// Redaction rules (add as needed)\nconst rules = [\n  { name: 'bearer_token',    re: /Bearer\\s+[A-Za-z0-9\\-_.=:+\\/]{10,}/g, repl: 'Bearer <REDACTED_TOKEN>' },\n  { name: 'api_key',         re: /(?<=^|\\W)(?:sk|rk|pk|api|ghp|glpat)[A-Za-z0-9_\\-]{16,}(?=\\W|$)/gi, repl: '<REDACTED_KEY>' },\n  { name: 'password_kv',     re: /(password|passwd|secret|token|apikey)\\s*[:=]\\s*[^\\n\\r\\t\"']+/gi, repl: '$1: <REDACTED>' },\n  { name: 'env_secret',      re: /(?<=^|\\n)([A-Z0-9_]+(?:PASSWORD|SECRET|TOKEN|KEY))=.+(?=\\n|$)/g, repl: '$1=<REDACTED>' },\n  { name: 'email',           re: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}/g, repl: '<REDACTED_EMAIL>' },\n  { name: 'ipv4',            re: /\\b(?!10\\.|192\\.168\\.|172\\.(1[6-9]|2\\d|3[0-1])\\.)\\d{1,3}(?:\\.\\d{1,3}){3}\\b/g, repl: '<REDACTED_IP>' },\n  { name: 'mac',             re: /\\b[0-9A-Fa-f]{2}(:[0-9A-Fa-f]{2}){5}\\b/g, repl: '<REDACTED_MAC>' },\n  { name: 'url_tokens',      re: /(https?:\\/\\/[^\\s?#]+[?&](?:token|key|sig|signature|auth)=[^\\s&#]+)/gi, repl: '<REDACTED_URL>' },\n  { name: 'latlong',         re: /\\b-?\\d{1,2}\\.\\d{3,},\\s*-?\\d{1,3}\\.\\d{3,}\\b/g, repl: '<REDACTED_COORDS>' },\n  { name: 'home_address',    re: /\\b\\d{1,5}\\s+[A-Za-z0-9'.\\-\\s]+\\s+(?:Ave|Avenue|Blvd|Boulevard|Cir|Circle|Ct|Court|Dr|Drive|Ln|Lane|Rd|Road|St|Street|Way)\\b/gi, repl: '<REDACTED_ADDRESS>' }\n];\n\nlet sanitized = blob;\nfor (const r of rules) sanitized = sanitized.replace(r.re, r.repl);\n\n// Return both raw/sanitized so the caller can diff locally if they want (do not send raw onward)\nreturn [{ json: { sanitized, meta: { redactions: rules.map(r=>r.name), length: sanitized.length } } }];"
+      },
+      "id": "SanitizeFunction",
+      "name": "Sanitize Function",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [ 520, 240 ]
+    },
+    {
+      "parameters": {
+        "responseBody": "={{$json}}",
+        "responseCode": 200
+      },
+      "id": "Respond",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [ 820, 240 ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": { "main": [[ { "node": "Sanitize Function", "type": "main", "index": 0 } ]] },
+    "Sanitize Function": { "main": [[ { "node": "Respond", "type": "main", "index": 0 } ]] }
+  }
+}
