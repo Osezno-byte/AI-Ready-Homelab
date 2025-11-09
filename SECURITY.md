@@ -1,14 +1,7 @@
 # Security Policy
 
-If you discover a security issue, please do not open a public issue.
+If you discover a vulnerability, configuration risk, or security concern related to this framework, please open a GitHub Issue with the "security" label.
 
-**Email**: Report to [@Osezno-byte](https://github.com/Osezno-byte) via GitHub
-**Alternative**: Open a private GitHub security advisory (Security → Advisories)
+Do not include secrets, passwords, private IPs, or sensitive logs. Provide a minimal reproduction or high-level description.
 
-Please include:
-- A clear description of the issue and impact
-- Reproduction steps
-- Affected versions or files
-- Suggested mitigation if available
-
-We aim to acknowledge reports within 72 hours.
+This framework is local-first, but users may integrate cloud AI or external tools. Always sanitize before sharing.

@@ -1,6 +1,6 @@
 # STATUS.md Workflow Guide
 
-**Last Updated**: 2025-11-09
+**Last Updated**: 2025-11-09 | **Version**: 1.0.0
 
 **Purpose**: Maintain a living snapshot of your infrastructure health
 **Frequency**: Update daily (quick) or weekly (detailed)

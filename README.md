@@ -96,10 +96,11 @@ This framework provides structure; you remain in control.
 If you're new to this, begin with the minimum viable setup:
 
 1. **Copy the starter templates**:
-```bash
-cp samples/STATUS.sample.md STATUS.md
-cp samples/PENDING-WORK.sample.md PENDING-WORK.md
-```
+
+   ```bash
+   cp samples/STATUS.sample.md STATUS.md
+   cp samples/PENDING-WORK.sample.md PENDING-WORK.md
+   ```
 
 2. **Fill out STATUS.md once** with your current homelab state.
 
@@ -123,7 +124,7 @@ The general operating model looks like this:
 2. AI generates a plan within the boundaries of CSE guardrails.
 3. The plan is reviewed and approved by you.
 4. Any sensitive data is sanitized before leaving the network (if hybrid mode is used).
-5. Actions are executed locally through MCP tools or runbooks.
+5. Actions are executed locally through Model Context Protocol (MCP) tools or runbooks.
 6. STATUS.md is updated.
 7. A verification window ensures system stability.
 8. The change is marked complete.
@@ -242,7 +243,7 @@ If you want the complete operating system:
 * [`samples/PENDING-WORK.sample.md`](samples/PENDING-WORK.sample.md) - Project tracking template
 * [`sre-kit/`](sre-kit/) - Complete SRE governance templates
 
-### Comparisons & Positioning
+### Ecosystem & Comparisons
 * [`docs/comparisons/vs-homelab-mcp-repos.md`](docs/comparisons/vs-homelab-mcp-repos.md) — How this framework relates to other homelab projects
 
 ---
@@ -298,7 +299,7 @@ cp sre-kit/dr-test-matrix.md docs/reliability/
 ## Repository Structure
 
 ```
-ai-ready-homelab/
+AI-Ready-Homelab/
 ├── README.md                      # This file
 ├── sre-kit/                       # SRE governance templates
 │   ├── STATUS-workflow.md         # How to maintain STATUS.md
@@ -409,7 +410,7 @@ However, you should test any changes in your environment before applying them to
 * **GitHub Issues** for bugs or feature requests
 * **Documentation** in `sre-kit/` and `docs/`
 
-Response time is usually 24-48 hours.
+Responses are generally timely.
 
 ---
 
@@ -420,7 +421,7 @@ Response time is usually 24-48 hours.
 - Redlines enforce hard blocks for WAN rules, volume deletion, credential changes, destructive operations
 - Approvals with TTL ensure risky operations require human confirmation
 - No raw persistence — raw logs or configurations never get stored inside workflows
-- CSE acts as the safety officer — all AI actions go through policy checks
+- CSE acts as a safety layer — all AI actions go through policy checks
 
 ---
 
