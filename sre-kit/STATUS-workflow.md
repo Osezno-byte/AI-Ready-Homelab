@@ -4,6 +4,8 @@
 **Frequency**: Update daily (quick) or weekly (detailed)
 **Time Required**: 5-10 minutes per update
 
+**What it is (in one line):** Your single source of truth for reliability — not a log, not an incident report, but the operational heartbeat you update on a cadence.
+
 ---
 
 ## Your First 3 Updates (New User Quick Start)
@@ -86,6 +88,10 @@ This teaches the SRE cadence immediately.
 ---
 
 ## ✅ Best Practices
+
+### Philosophy (Why This Works)
+
+Reliability isn't proven by a single command; it's proven by stable behavior across a verification window. STATUS enforces rhythm, documentation, and safe change — the guardrails that keep real infrastructure sane.
 
 ### Issue ID Format
 
@@ -336,7 +342,7 @@ Acceptable: 95%+ for non-critical
 ## Reference Links
 
 ### CSE Policy and Privacy
-- **CSE Policy Example**: [`sre-kit/examples/cse-policy.example.yaml`](examples/cse-policy.example.yaml)
+- **CSE Policy Example**: [`examples/cse-policy.example.yaml`](examples/cse-policy.example.yaml)
 - **Preflight Sanitizer** (n8n): [`tools/n8n/preflight_sanitize.n8n.json`](../tools/n8n/preflight_sanitize.n8n.json)
 - **CSE Policy Validator**: [`tools/cse_policy_validator.py`](../tools/cse_policy_validator.py)
 

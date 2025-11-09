@@ -66,6 +66,8 @@ These patterns are battle-tested in a production homelab:
 * **Zero credential leaks** via secrets handling
 * **100% backup coverage** after implementing DR framework
 
+<sub>Metrics captured from STATUS.md history and DR drill logs.</sub>
+
 ### Case Study: How STATUS.md Caught a Frigate Regression
 
 After a Docker restart, the cameras looked fine but STATUS.md showed increased reconnections within 12 hours.
@@ -276,6 +278,8 @@ If you want the complete operating system:
 
 ### Core Framework
 * [`sre-kit/STATUS-workflow.md`](sre-kit/STATUS-workflow.md) - How to maintain STATUS.md (comprehensive guide)
+* [`sre-kit/incident-template.md`](sre-kit/incident-template.md) - Incident documentation
+* [`sre-kit/dr-test-matrix.md`](sre-kit/dr-test-matrix.md) - Disaster recovery testing
 * [`samples/STATUS.sample.md`](samples/STATUS.sample.md) - Service health tracking template
 * [`samples/PENDING-WORK.sample.md`](samples/PENDING-WORK.sample.md) - Project tracking template
 * [`sre-kit/`](sre-kit/) - Complete SRE governance templates
@@ -323,6 +327,7 @@ ollama run llama3.1:8b "Explain Docker health checks"
 
 ```bash
 # Copy SRE kit templates
+mkdir -p docs/governance docs/reliability
 cp sre-kit/STATUS-workflow.md docs/governance/
 cp sre-kit/incident-template.md docs/governance/
 cp sre-kit/dr-test-matrix.md docs/reliability/
