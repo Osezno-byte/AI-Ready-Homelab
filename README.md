@@ -66,6 +66,13 @@ These patterns are battle-tested in a production homelab:
 * **Zero credential leaks** via secrets handling
 * **100% backup coverage** after implementing DR framework
 
+### Case Study: How STATUS.md Caught a Frigate Regression
+
+After a Docker restart, the cameras looked fine but STATUS.md showed increased reconnections within 12 hours.
+The verification window caught the regression early, and the fix was documented, preventing future failures.
+
+**This is why verification windows matter.**
+
 ---
 
 ## How It Works (High-Level Flow)
@@ -97,6 +104,14 @@ These patterns are battle-tested in a production homelab:
 5. **Evidence → STATUS.md**
    Before/after metrics and logs are recorded.
    A verification window ensures stability before the change is considered "complete."
+
+---
+
+## Why It Works
+
+Homelabs become unreliable not because people are careless, but because nothing enforces rhythm, documentation, or safe change.
+
+This framework gives your homelab the same guardrails that keep real infrastructure sane.
 
 ---
 
@@ -175,6 +190,32 @@ You're adopting an operating system for your homelab.
 
 ---
 
+## ✅ If You're New to All of This (The Simple Path)
+
+**Start here if you're new:**
+
+1. **Copy the `samples/` templates**
+   ```bash
+   cp samples/STATUS.sample.md STATUS.md
+   cp samples/PENDING-WORK.sample.md PENDING-WORK.md
+   ```
+
+2. **Fill out STATUS.md once**
+   Add your current services, their status, and any recent changes.
+
+3. **Add one runbook (Docker or HA)**
+   Document how you restart a service or check logs.
+
+4. **Do one verification window**
+   Make a small change, mark it "pending verification" for 48 hours.
+
+5. **That's it**
+   You've started the SRE cadence. Build from there.
+
+**People love a low-friction entry point.** Start small, build discipline, expand naturally.
+
+---
+
 ## ✅ Three Ways to Use This
 
 ### 1. Quick Start (10 minutes)
@@ -234,6 +275,7 @@ If you want the complete operating system:
 ## ✅ Documentation
 
 ### Core Framework
+* [`sre-kit/STATUS-workflow.md`](sre-kit/STATUS-workflow.md) - How to maintain STATUS.md (comprehensive guide)
 * [`samples/STATUS.sample.md`](samples/STATUS.sample.md) - Service health tracking template
 * [`samples/PENDING-WORK.sample.md`](samples/PENDING-WORK.sample.md) - Project tracking template
 * [`sre-kit/`](sre-kit/) - Complete SRE governance templates
@@ -320,6 +362,17 @@ ai-ready-homelab/
 
 ---
 
+## ❌ What This Is Not
+
+- **Not** a "magic AI" that runs your homelab for you
+- **Not** a set of random MCP tools
+- **Not** a home-automation shortcut or a scripted stack
+- **Not** a full enterprise SRE handbook
+
+This is a governance and operations framework for people who want reliability, privacy, and AI assistance without handing their homelab to the cloud.
+
+---
+
 ## ✅ How This Compares to Other Projects
 
 ### vs bjeans/homelab-mcp
@@ -397,7 +450,9 @@ See [LICENSE](LICENSE) for details.
 - **GitHub Issues**: Report bugs, request features
 - **Documentation**: Complete guides in [`docs/`](docs/)
 
-### Professional Services (Coming Soon)
+### Professional Services (Optional)
+
+**This framework is fully usable for free.** Professional services are optional and low-volume.
 
 **Local AI Conversion Package** - $497/$997
 - Turnkey local AI setup
