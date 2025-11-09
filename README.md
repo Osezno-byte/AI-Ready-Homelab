@@ -324,27 +324,90 @@ ai-ready-homelab/
 
 ## How This Fits Into the Ecosystem
 
-The AI homelab space is evolving quickly, and several projects tackle parts of the problem.
-This framework takes a different approach by focusing on governance, safety, and AI-operable infrastructure.
+The homelab AI space is developing rapidly.
+Several projects provide tools, MCP servers, or deployment stacks.
+This framework addresses a different part of the problem: governance, operational safety, and reliable AI integration.
+
+Most projects focus on capability.
+This framework focuses on sustainability.
 
 ### Related Projects
 
-#### bjeans/homelab-mcp
+The projects below solve adjacent problems and can be used alongside this framework.
 
-**They provide**: MCP servers for Docker, Ollama, Pi-hole, Unifi
-**We provide**: Complete operating framework with governance + runbooks + privacy-first AI
+**bjeans/homelab-mcp** provides MCP servers for Docker, Ollama, Pi-hole, and Unifi.
+These are tools this framework can integrate with.
 
-#### ai-stack-homelab
+**ai-stack-homelab** provides local AI deployment infrastructure.
+This framework builds on that foundation with governance, runbooks, and guardrails.
 
-**They provide**: Local AI deployment stack
-**We provide**: AI-operable infrastructure with SRE discipline + safety guardrails
+**awesome-mcp-servers** catalogs available MCP tools.
+This framework provides the methodology for using those tools safely and reliably.
 
-#### awesome-mcp-servers
-
-**They provide**: Catalog of available MCP tools
-**We provide**: Complete methodology for operating infrastructure with those tools
+These projects are complementary, not competitive.
 
 **See full comparison**: [`docs/comparisons/vs-homelab-mcp-repos.md`](docs/comparisons/vs-homelab-mcp-repos.md)
+
+---
+
+## Frequently Asked Questions
+
+### Does this require cloud AI services?
+
+No. The framework is designed to run entirely on local models (Ollama, LM Studio, etc.).
+Hybrid mode is optional and only uses cloud AI for planning, with mandatory sanitization.
+
+### What hardware do I need for local AI?
+
+**Minimum**: 16GB RAM, 20GB disk, CPU inference (llama3.1:8b or mistral:7b)
+**Recommended**: 32-64GB RAM, 100GB disk, NVIDIA GPU with 24GB+ VRAM for larger models
+**Optimal**: 64-128GB RAM, 500GB SSD, NVIDIA GPU with 48GB+ VRAM for multiple models
+
+You can start with CPU-only and upgrade later.
+
+### Is this only for homelabs?
+
+No. The framework works for any self-hosted infrastructure: small business servers, development environments, research labs, or edge deployments.
+The principles scale from single-node setups to multi-node clusters.
+
+### Do I need to use all the SRE templates?
+
+No. Start with STATUS.md and one verification window.
+Add runbooks and governance patterns gradually as you find value in them.
+The framework is modular by design.
+
+### How long does implementation take?
+
+**Quick start**: 10 minutes (copy templates, fill out STATUS.md)
+**Intermediate**: 2-3 hours (add governance, runbooks, DR plan)
+**Full implementation**: 6-12 hours (local AI, MCP servers, agents, complete SRE kit)
+
+Most users start small and expand over weeks or months.
+
+### Can I use this with my existing homelab?
+
+Yes. The framework is designed to integrate with existing infrastructure.
+You don't need to rebuild anything.
+Start by documenting your current state in STATUS.md and go from there.
+
+### What if I don't use Home Assistant or Proxmox?
+
+The framework is tool-agnostic.
+The templates and patterns work with any infrastructure: pure Docker, Kubernetes, LXD, ESXi, etc.
+The examples use Home Assistant and Proxmox because those are common, but the methodology applies universally.
+
+### Is this production-ready?
+
+Yes. The framework has been validated in a production homelab for months.
+However, you should test any changes in your environment before applying them to critical systems.
+
+### How do I get help?
+
+* **GitHub Discussions** for questions and implementation help
+* **GitHub Issues** for bugs or feature requests
+* **Documentation** in `sre-kit/` and `docs/`
+
+Response time is usually 24-48 hours.
 
 ---
 

@@ -1,24 +1,25 @@
 # Contributing to AI-Ready Homelab
 
-Thank you for your interest in contributing! This framework is built by the community, for the community.
+Thank you for your interest in contributing.
+This framework is built by the community, for the community.
 
 ---
 
-## 🎯 Ways to Contribute
+## Ways to Contribute
 
 ### 1. Share Your Implementation
 
-**We want to hear your story!**
-
 If you're using this framework:
-* Open a Discussion and share your setup
+* Open a Discussion and describe your setup
 * Document what worked well and what didn't
 * Share metrics and results
 * Help others by answering questions
 
+Real-world usage reports are valuable feedback.
+
 ### 2. Improve Documentation
 
-**Documentation is critical**
+Documentation is critical to this project.
 
 Ways to help:
 * Fix typos or unclear instructions
@@ -29,27 +30,27 @@ Ways to help:
 
 ### 3. Contribute Templates
 
-**New templates are always welcome**
+New templates are always welcome.
 
 We need:
 * Service-specific runbooks (Plex, Jellyfin, Nginx, etc.)
 * Additional SRE patterns
 * Agent specifications for new use cases
 * Network topology examples
-* Backup/DR procedures
+* Backup and DR procedures
 
 ### 4. Report Issues
 
-**Found a bug or problem?**
+Found a bug or problem?
 
-* Check if issue already exists
+* Check if the issue already exists
 * Provide clear reproduction steps
 * Include relevant logs or screenshots
 * Suggest a fix if you have one
 
 ### 5. Suggest Features
 
-**Have an idea?**
+Have an idea?
 
 * Open a Discussion first (not an Issue)
 * Explain the use case
@@ -58,7 +59,7 @@ We need:
 
 ---
 
-## 📋 Contribution Guidelines
+## Contribution Guidelines
 
 ### Before You Start
 
@@ -84,7 +85,7 @@ We need:
 
 ### Code of Conduct
 
-**Be respectful and constructive**
+Be respectful and constructive.
 
 * Welcome newcomers and help them learn
 * Provide constructive feedback
@@ -92,11 +93,11 @@ We need:
 * Assume good intentions
 * No harassment, discrimination, or trolling
 
-**This is a professional community** - treat it as such.
+This is a professional community. Treat it as such.
 
 ---
 
-## 🎨 Style Guidelines
+## Style Guidelines
 
 ### Documentation
 
@@ -104,7 +105,7 @@ We need:
 * Include examples where helpful
 * Use Markdown formatting consistently
 * Add code blocks with syntax highlighting
-* Keep line length reasonable (<120 chars)
+* Keep line length reasonable (120 chars or less)
 
 ### Templates
 
@@ -123,9 +124,9 @@ We need:
 
 ---
 
-## 🚀 Priority Areas
+## Priority Areas
 
-**We especially need help with**:
+We especially need help with:
 
 ### High Priority
 * Service-specific runbooks (Home Assistant, Frigate, n8n, etc.)
@@ -147,16 +148,16 @@ We need:
 
 ---
 
-## 🏆 Recognition
+## Recognition
 
-**Contributors will be recognized in**:
+Contributors will be recognized in:
 
 * README.md (Contributors section - coming soon)
 * Release notes (when applicable)
 * GitHub contributors graph
 * Community discussions
 
-**Top contributors may be invited to**:
+Top contributors may be invited to:
 * Join as maintainers
 * Co-author blog posts
 * Speak at community events
@@ -164,30 +165,30 @@ We need:
 
 ---
 
-## 📞 Getting Help
+## Getting Help
 
-**Need help contributing?**
+Need help contributing?
 
 * Open a Discussion with tag `question`
 * Ask in pull request comments
 * Review existing contributions for examples
 
-**Response time**: Usually within 24-48 hours
+Response time: Usually within 24-48 hours
 
 ---
 
-## 🔍 Review Process
+## Review Process
 
 ### What We Look For
 
-✅ **Good contributions**:
+Good contributions:
 * Solve a real problem
 * Follow existing patterns
 * Include documentation
 * Are well-tested
 * Add value to the community
 
-❌ **Contributions we might reject**:
+Contributions we might reject:
 * Too broad in scope (break into smaller PRs)
 * Duplicate existing functionality
 * Lack documentation or examples
@@ -202,7 +203,7 @@ We need:
 
 ---
 
-## 📝 License
+## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
 
@@ -210,9 +211,9 @@ All contributed content must be your original work or properly attributed if der
 
 ---
 
-## 🎯 Project Goals
+## Project Goals
 
-**Keep these in mind when contributing**:
+Keep these in mind when contributing:
 
 1. **Privacy-first** - Local AI by default, cloud optional
 2. **SRE discipline** - Governance and reliability over features
@@ -222,15 +223,15 @@ All contributed content must be your original work or properly attributed if der
 
 ---
 
-## 🙏 Thank You
+## Thank You
 
 Every contribution, no matter how small, helps make this framework better for everyone.
 
-**Together we're building the standard for AI-operable homelab infrastructure.**
+Together we're building the standard for AI-operable homelab infrastructure.
 
 ---
 
-## 📚 Resources
+## Resources
 
 * [README](README.md) - Project overview
 * [SRE Kit](sre-kit/) - Core templates
@@ -239,6 +240,6 @@ Every contribution, no matter how small, helps make this framework better for ev
 
 ---
 
-**Questions?** Open a Discussion or email: your-email@example.com
+**Questions?** Open a Discussion.
 
-**Ready to contribute?** Fork the repo and submit your first PR!
+**Ready to contribute?** Fork the repo and submit your first PR.
