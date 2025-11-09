@@ -152,10 +152,10 @@ We especially need help with:
 
 Contributors will be recognized in:
 
-* README.md (Contributors section - coming soon)
 * Release notes (when applicable)
 * GitHub contributors graph
 * Community discussions
+* Repository acknowledgments
 
 Top contributors may be invited to:
 * Join as maintainers

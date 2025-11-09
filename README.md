@@ -1,5 +1,7 @@
 # AI-Ready Homelab Framework
 
+**Last Updated**: 2025-11-09 | **Version**: 1.0.0
+
 <!-- CI Badges will be added after GitHub Actions go live -->
 
 A structured, reliable, privacy-first approach to running a homelab with local AI assistance.
