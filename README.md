@@ -96,10 +96,10 @@ This framework provides structure; you remain in control.
 If you're new to this, begin with the minimum viable setup:
 
 1. **Copy the starter templates**:
-   ```bash
-   cp samples/STATUS.sample.md STATUS.md
-   cp samples/PENDING-WORK.sample.md PENDING-WORK.md
-   ```
+```bash
+cp samples/STATUS.sample.md STATUS.md
+cp samples/PENDING-WORK.sample.md PENDING-WORK.md
+```
 
 2. **Fill out STATUS.md once** with your current homelab state.
 
@@ -417,16 +417,22 @@ Response time is usually 24-48 hours.
 
 - Local-only execution — all actions run on your LAN via MCP tools
 - Sanitized cloud planning — no raw logs or personal data ever leave the LAN
-- Redlines enforce hard blocks for WAN rules, volume deletion, credential changes, destructive ops
+- Redlines enforce hard blocks for WAN rules, volume deletion, credential changes, destructive operations
 - Approvals with TTL ensure risky operations require human confirmation
-- No raw persistence — raw logs/configs never get stored inside workflows
+- No raw persistence — raw logs or configurations never get stored inside workflows
 - CSE acts as the safety officer — all AI actions go through policy checks
 
 ---
 
 ## Status
 
-This framework is under active development. Feedback, issues, and contributions are welcome.
+This framework is under active development.
+
+Current phase: public launch preparation
+Core SRE kit: complete
+Documentation: complete
+
+Feedback, issues, and contributions are welcome.
 
 
 ---
