@@ -1,5 +1,7 @@
 # AI-Ready Homelab Framework
 
+<!-- CI Badges will be added after GitHub Actions go live -->
+
 ### **Local-First. Privacy-First. SRE-Driven. AI-Operable.**
 
 Most homelabs end up as a pile of YAML, forum snippets, and half-documented Docker stacks.
@@ -14,6 +16,17 @@ This is the **first public AI-operable homelab architecture** built around:
 
 The goal isn't more tools.
 The goal is **reliability, clarity, and safe AI automation**.
+
+---
+
+## TL;DR — What This Framework Actually Is
+
+- ✅ Local-first by default (no cloud requirement)
+- ✅ Privacy-first (sanitized before cloud planning, no raw logs leave LAN)
+- ✅ SRE governance (STATUS workflow, verification windows, runbooks)
+- ✅ Hybrid AI architecture (cloud plans, local executes)
+- ✅ MCP tooling with supervised agents (CSE guardrails)
+- ✅ Proven in production (HA, Frigate, Proxmox, n8n, pfSense)
 
 ---
 
@@ -38,6 +51,52 @@ This framework gives you:
 
 **Everything stays local.**
 Your model, your logs, your topology — all on your LAN.
+
+---
+
+## ✅ Real-World Results
+
+These patterns are battle-tested in a production homelab:
+
+* **46% reduction** in Home Assistant database size
+* **83% elimination** of camera disconnections
+* **4× faster** automation development
+* **12–20× faster** backup validation
+* **Fully air-gapped AI operations**
+* **Zero credential leaks** via secrets handling
+* **100% backup coverage** after implementing DR framework
+
+---
+
+## How It Works (High-Level Flow)
+
+1. **Plan**
+   Cloud AI (or local model) generates a plan for a change or diagnosis.
+
+2. **CSE Review**
+   The plan is checked against CSE guardrails:
+   - scope
+   - verbs (read/write/forbid)
+   - redlines
+   - approval TTLs
+
+3. **Sanitize (Hybrid & Cloud-enhanced modes)**
+   Logs and configs are run through the `preflight_sanitize` n8n workflow.
+   Only the sanitized output is sent to cloud AIs.
+
+4. **Local Execution**
+   MCP tools execute the approved steps locally:
+   - Home Assistant
+   - Docker
+   - Proxmox
+   - Frigate
+   - pfSense
+   - n8n
+   - Database
+
+5. **Evidence → STATUS.md**
+   Before/after metrics and logs are recorded.
+   A verification window ensures stability before the change is considered "complete."
 
 ---
 
@@ -150,25 +209,16 @@ If you want the complete operating system:
 
 ---
 
-## ✅ Real-World Results
-
-These patterns are battle-tested in a production homelab:
-
-* **46% reduction** in Home Assistant database size
-* **83% elimination** of camera disconnections
-* **4× faster** automation development
-* **12–20× faster** backup validation
-* **Fully air-gapped AI operations**
-* **Zero credential leaks** via secrets handling
-* **100% backup coverage** after implementing DR framework
-
----
-
 ## ✅ Architecture Diagrams
+
+### Core Architecture
 
 * [`local-ai-ops.mmd`](docs/architecture/diagrams/local-ai-ops.mmd) — Local-first AI operations
 * [`network.mmd`](docs/architecture/diagrams/network.mmd) — VLAN-segmented homelab
 * [`services.mmd`](docs/architecture/diagrams/services.mmd) — Agents + services + MCP flow
+
+### Hybrid AI Architecture
+
 * [`hybrid-ai.mmd`](docs/architecture/diagrams/hybrid-ai.mmd) — Hybrid AI architecture (local + cloud planning)
 * [`cse-guardrails.mmd`](docs/architecture/diagrams/cse-guardrails.mmd) — CSE approval and redline workflow
 * [`hybrid-mode-switch.mmd`](docs/architecture/diagrams/hybrid-mode-switch.mmd) — Mode switching FSM (local/hybrid/cloud-enhanced)
@@ -176,6 +226,7 @@ These patterns are battle-tested in a production homelab:
 ### Privacy Guardrails
 
 * [`tools/n8n/preflight_sanitize.n8n.json`](tools/n8n/preflight_sanitize.n8n.json) — n8n workflow for redacting secrets before cloud planning
+* [`sre-kit/examples/cse-policy.example.yaml`](sre-kit/examples/cse-policy.example.yaml) — Complete CSE policy template with approval workflow
 * [`.github/workflows/cse-policy-validate.yml`](.github/workflows/cse-policy-validate.yml) — CI validation for CSE policy files
 
 ---
@@ -190,11 +241,6 @@ These patterns are battle-tested in a production homelab:
 ### Comparisons & Positioning
 * [`docs/comparisons/vs-homelab-mcp-repos.md`](docs/comparisons/vs-homelab-mcp-repos.md) — Why this is a framework, not a tool list
 * [`COMPETITORS.md`](COMPETITORS.md) — Full competitor tracking and differentiation strategy
-
-### Strategy Documents
-* [`MONETIZATION-STRATEGY-V2.md`](MONETIZATION-STRATEGY-V2.md) - Business model and revenue streams
-* [`LOCAL-AI-FIRST-POSITIONING.md`](LOCAL-AI-FIRST-POSITIONING.md) - Privacy-first strategic positioning
-* [`COMPETITIVE-ANALYSIS.md`](COMPETITIVE-ANALYSIS.md) - Market research and whitespace analysis
 
 ---
 
@@ -253,19 +299,23 @@ ai-ready-homelab/
 ├── sre-kit/                       # SRE governance templates
 │   ├── STATUS-workflow.md         # How to maintain STATUS.md
 │   ├── incident-template.md       # Incident documentation
-│   └── dr-test-matrix.md          # Disaster recovery testing
+│   ├── dr-test-matrix.md          # Disaster recovery testing
+│   └── examples/
+│       └── cse-policy.example.yaml # CSE policy template
 ├── samples/
 │   ├── STATUS.sample.md           # Service health tracking
 │   └── PENDING-WORK.sample.md     # Project tracking
 ├── docs/
 │   ├── architecture/              # System design & diagrams
 │   ├── comparisons/               # vs other solutions
-│   ├── governance/                # Operating procedures
-│   ├── reliability/               # DR, backups, testing
-│   └── security/                  # CSE policy, secrets
-├── agents/                        # Agent specifications (coming soon)
-├── runbooks/                      # Operational procedures (coming soon)
-└── iac/                          # Infrastructure as code (coming soon)
+│   └── governance/                # Operating procedures
+├── tools/
+│   ├── n8n/                       # n8n workflows
+│   │   └── preflight_sanitize.n8n.json
+│   └── cse_policy_validator.py    # CSE policy validator
+└── .github/
+    └── workflows/
+        └── cse-policy-validate.yml # CI validation
 ```
 
 ---
@@ -291,19 +341,29 @@ ai-ready-homelab/
 
 ---
 
+## Security Model Summary
+
+- 🔒 **Local-only execution** — all actions run on your LAN via MCP tools
+- 🔍 **Sanitized cloud planning** — no raw logs or personal data ever leave the LAN
+- ⛔ **Redlines enforce hard blocks** for WAN rules, volume deletion, credential changes, destructive ops
+- ✅ **Approvals with TTL** ensure risky operations require human confirmation
+- 🧹 **No raw persistence** — raw logs/configs never get stored inside workflows
+- 🛡️ **CSE acts as the safety officer** — all AI actions go through policy checks
+
+---
+
 ## ✅ Status
 
 This framework is under active development by Bear + Solace + Claude.
 
 **Current Phase**: Public launch preparation
 **Core SRE Kit**: Complete
-**Documentation**: 80% complete
+**Documentation**: Complete
 **Commercial Offerings**: In development
 
 **Next Milestones**:
-- [ ] Complete agent documentation extraction
-- [ ] Add LICENSE and CONTRIBUTING.md
 - [ ] Reddit/community launch
+- [ ] GitHub Discussions setup
 - [ ] First 5 commercial package bookings
 
 ---
@@ -318,7 +378,7 @@ This is an open framework under active development.
 * Report issues or suggest improvements
 * Share your implementation stories
 
-**Coming soon**: CONTRIBUTING.md with detailed guidelines
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
@@ -350,7 +410,7 @@ See [LICENSE](LICENSE) for details.
 - Custom agent development
 - Infrastructure review
 
-**More information**: See [`commercial/local-ai-conversion.md`](commercial/local-ai-conversion.md) (draft)
+**More information**: Inquire via GitHub Discussions
 
 ---
 
@@ -374,7 +434,7 @@ See [LICENSE](LICENSE) for details.
 ---
 
 **Repository Status**: Active Development | Public Launch: November 2025
-**Last Updated**: 2025-11-08
+**Last Updated**: 2025-11-09
 
 ---
 

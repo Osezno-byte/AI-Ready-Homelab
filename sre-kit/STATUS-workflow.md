@@ -6,6 +6,23 @@
 
 ---
 
+## Your First 3 Updates (New User Quick Start)
+
+1. **Log a simple health check**
+   Open STATUS.md and add "HA database size: X MB" and "Frigate uptime: X hours."
+
+2. **Record a routine restart**
+   Perform a `docker restart frigate` via MCP.
+   Record "before/after" CPU & memory in STATUS.
+
+3. **Create a verification window**
+   Add a 48-hour check for one small change.
+   Mark it "Verified" only if stable.
+
+This teaches the SRE cadence immediately.
+
+---
+
 ## ✅ Template Structure
 
 ```markdown
@@ -92,6 +109,14 @@ Use sequential IDs for tracking:
 - Configuration changes: 48 hours
 - Major updates: 1 week
 - DR changes: After next successful drill
+
+### Why Verification Windows Matter
+
+Reliability isn't proven by a successful command — it's proven by stable behavior over time.
+Verification windows force discipline:
+- They prevent premature "all good" assumptions
+- They catch regressions early
+- They establish a measurable reliability history
 
 ### When to Update
 
@@ -305,3 +330,17 @@ Acceptable: 95%+ for non-critical
 - [`samples/STATUS.sample.md`](../samples/STATUS.sample.md) - Complete template with examples
 - [`incident-template.md`](incident-template.md) - For major incidents
 - [`dr-test-matrix.md`](dr-test-matrix.md) - For disaster recovery testing
+
+---
+
+## Reference Links
+
+### CSE Policy and Privacy
+- **CSE Policy Example**: [`sre-kit/examples/cse-policy.example.yaml`](examples/cse-policy.example.yaml)
+- **Preflight Sanitizer** (n8n): [`tools/n8n/preflight_sanitize.n8n.json`](../tools/n8n/preflight_sanitize.n8n.json)
+- **CSE Policy Validator**: [`tools/cse_policy_validator.py`](../tools/cse_policy_validator.py)
+
+### Architecture Diagrams
+- **Hybrid AI Flow**: [`docs/architecture/diagrams/hybrid-ai.mmd`](../docs/architecture/diagrams/hybrid-ai.mmd)
+- **CSE Guardrails**: [`docs/architecture/diagrams/cse-guardrails.mmd`](../docs/architecture/diagrams/cse-guardrails.mmd)
+- **Mode Switching**: [`docs/architecture/diagrams/hybrid-mode-switch.mmd`](../docs/architecture/diagrams/hybrid-mode-switch.mmd)
