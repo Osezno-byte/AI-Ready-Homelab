@@ -27,9 +27,16 @@ jobs:
       - name: Validate CSE policies
         run: |
           set -e
+          echo "Testing validator on example policy..."
           python tools/cse_policy_validator.py sre-kit/examples/cse-policy.example.yaml
-          # Validate any additional policies you add later
-          for f in $(git ls-files | grep -E 'cse-policy.*\\.ya?ml$|sre-kit/.*/cse-.*\\.ya?ml' || true); do
+
+          echo ""
+          echo "Validating CSE policy files in repository..."
+          # Validate any additional policies (exclude .github workflows)
+          for f in $(git ls-files | grep -E 'cse-policy.*\\.ya?ml$' | grep -v '.github' || true); do
             echo "Validating $f"
             python tools/cse_policy_validator.py "$f"
           done
+
+          echo ""
+          echo "✅ All CSE policies validated successfully"
