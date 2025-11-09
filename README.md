@@ -295,8 +295,8 @@ If you want the complete operating system:
 ### Step 1: Clone This Repository
 
 ```bash
-git clone https://github.com/Osezno-byte/ai-ready-homelab.git
-cd ai-ready-homelab
+git clone https://github.com/Osezno-byte/AI-Ready-Homelab.git
+cd AI-Ready-Homelab
 ```
 
 ### Step 2: Set Up Your Documentation
