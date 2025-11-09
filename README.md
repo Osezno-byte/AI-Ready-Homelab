@@ -413,18 +413,8 @@ This is a governance and operations framework for people who want reliability, p
 ---
 
 ## ✅ Status
+This framework is under active development. Feedback, issues, and contributions are welcome.
 
-This framework is under active development by Bear + Solace + Claude.
-
-**Current Phase**: Public launch preparation
-**Core SRE Kit**: Complete
-**Documentation**: Complete
-**Commercial Offerings**: In development
-
-**Next Milestones**:
-- [ ] Reddit/community launch
-- [ ] GitHub Discussions setup
-- [ ] First 5 commercial package bookings
 
 ---
 
