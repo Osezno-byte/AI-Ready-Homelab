@@ -1,0 +1,92 @@
+version: "1.0"
+
+metadata:
+  name: "Example CSE Policy"
+  description: "Sample CSE privilege control policy for AI-ready homelab"
+  owner: "homelab-admin"
+  last_updated: "2025-11-09"
+
+infrastructures:
+  homeassistant:
+    enabled: true
+    ttl_minutes: 120  # 2 hour max session
+    requires_approval: false  # HA changes are low-risk, auto-approve
+    allowed_commands:
+      - "ssh root@10.27.27.11*"
+      - "scp * root@10.27.27.11:/config/*"
+      - "ha core check"
+      - "ha core logs*"
+      - "ha core restart"
+    description: "Home Assistant configuration and automation management"
+
+  pfsense:
+    enabled: true
+    ttl_minutes: 60  # 1 hour max session
+    requires_approval: true  # Network changes require approval
+    allowed_commands:
+      - "ssh admin@10.27.27.1*"
+      - "scp * admin@10.27.27.1:/tmp/*"
+    description: "pfSense firewall configuration (read-only recommended)"
+
+  vms:
+    enabled: true
+    ttl_minutes: 240  # 4 hour max session for long troubleshooting
+    requires_approval: false  # VM management is routine
+    allowed_commands:
+      - "docker ps*"
+      - "docker logs*"
+      - "docker inspect*"
+      - "docker restart*"
+      - "ssh root@10.27.27.250*"
+      - "systemctl status*"
+      - "systemctl restart*"
+      - "journalctl*"
+    description: "Docker container and VM management (media-core, docker-core)"
+
+  proxmox:
+    enabled: true
+    ttl_minutes: 30  # Short sessions for Proxmox (powerful access)
+    requires_approval: true  # Infrastructure changes require approval
+    allowed_commands:
+      - "ssh root@10.27.27.10*"
+      - "pvesh get*"
+      - "qm list"
+      - "pct list"
+    description: "Proxmox hypervisor access (read-only recommended)"
+
+approval_workflow:
+  mode: "interactive"  # Options: interactive, notify-only, auto-approve
+  timeout_seconds: 120  # 2 minutes to approve before auto-deny
+  notification_channels:
+    - "signal"
+    - "telegram"
+  approval_methods:
+    - "cli-prompt"
+    - "web-ui"
+    - "mobile-notification"
+
+  redline_triggers:
+    # Conditions that immediately block and require manual review
+    - pattern: "rm -rf /"
+      reason: "Destructive root filesystem operation"
+    - pattern: "dd if=/dev/zero"
+      reason: "Disk wipe operation"
+    - pattern: "mkfs.*"
+      reason: "Filesystem formatting"
+    - pattern: "DROP DATABASE"
+      reason: "Database deletion"
+    - pattern: "iptables -F"
+      reason: "Firewall flush (breaks connectivity)"
+
+audit:
+  enabled: true
+  log_path: "/var/log/cse-audit.log"
+  retention_days: 90
+  include_command_output: false  # Privacy: don't log output (may contain secrets)
+  alert_on_denial: true
+  alert_on_redline: true
+
+session_limits:
+  max_concurrent_sessions: 2  # Maximum 2 infrastructures enabled simultaneously
+  max_daily_sessions: 10  # Rate limit: 10 enable operations per day
+  cooldown_minutes: 5  # 5 minute cooldown between rapid enable/disable cycles

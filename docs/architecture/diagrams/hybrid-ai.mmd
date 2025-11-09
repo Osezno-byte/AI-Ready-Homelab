@@ -1,0 +1,58 @@
+graph TB
+    subgraph "Local Infrastructure"
+        HA[Home Assistant]
+        FRIGATE[Frigate NVR]
+        DOCKER[Docker Services]
+        PROXMOX[Proxmox]
+        PFSENSE[pfSense]
+
+        MCP[MCP Tools<br/>65 tools across 7 servers]
+        HA --> MCP
+        FRIGATE --> MCP
+        DOCKER --> MCP
+        PROXMOX --> MCP
+        PFSENSE --> MCP
+    end
+
+    subgraph "AI Layer (Hybrid)"
+        OLLAMA[Local AI<br/>Ollama/LM Studio<br/>DEFAULT MODE]
+        CLOUD[Cloud AI<br/>Claude/GPT<br/>Planning Only]
+
+        SANITIZER[Preflight Sanitizer<br/>n8n workflow<br/>10 redaction rules]
+    end
+
+    subgraph "Execution Layer"
+        CSE[CSE Guardrails<br/>Approval + Redline]
+        N8N[n8n Workflows<br/>24/7 Monitoring]
+    end
+
+    subgraph "User Control"
+        USER[Bear<br/>Human Operator]
+        SIGNAL[Signal Notifications<br/>Approval Prompts]
+    end
+
+    %% Data flow: Local-only mode (DEFAULT)
+    MCP -->|structured data| OLLAMA
+    OLLAMA -->|proposed actions| CSE
+
+    %% Data flow: Hybrid mode (optional)
+    MCP -->|raw logs/config| SANITIZER
+    SANITIZER -->|sanitized only| CLOUD
+    CLOUD -->|suggested plan| OLLAMA
+    OLLAMA -->|execute locally| CSE
+
+    %% Approval workflow
+    CSE -->|requires approval?| SIGNAL
+    SIGNAL -->|approve/deny| USER
+    USER -->|approval| CSE
+    CSE -->|execute| MCP
+
+    %% Monitoring
+    N8N -->|health checks| MCP
+    N8N -->|alerts| SIGNAL
+
+    style OLLAMA fill:#90EE90
+    style CLOUD fill:#FFE4B5
+    style SANITIZER fill:#87CEEB
+    style CSE fill:#FFB6C1
+    style USER fill:#DDA0DD

@@ -1,0 +1,60 @@
+stateDiagram-v2
+    [*] --> LocalOnly: Default Mode
+
+    state "Local-Only Mode" as LocalOnly {
+        [*] --> OllamaActive
+        OllamaActive: Ollama/LM Studio
+        OllamaActive: Zero cloud exposure
+        OllamaActive: Full privacy
+        OllamaActive: MCP tools only
+    }
+
+    state "Hybrid Mode" as Hybrid {
+        [*] --> Sanitizing
+        Sanitizing: Preflight sanitizer active
+        Sanitizing: Cloud for planning
+        Sanitizing: Local for execution
+        Sanitizing --> CloudPlanning
+        CloudPlanning: Claude/GPT receives sanitized logs
+        CloudPlanning: Suggests remediation plan
+        CloudPlanning --> LocalExecution
+        LocalExecution: Ollama validates plan
+        LocalExecution: CSE executes locally
+    }
+
+    state "Cloud-Enhanced Mode" as CloudEnhanced {
+        [*] --> FullCloud
+        FullCloud: Cloud AI for planning
+        FullCloud: Mandatory sanitization
+        FullCloud: Local execution only
+        FullCloud: CSE approval required
+    }
+
+    LocalOnly --> Hybrid: User enables hybrid<br/>(complex troubleshooting)
+    Hybrid --> LocalOnly: Troubleshooting complete<br/>(return to default)
+
+    Hybrid --> CloudEnhanced: Escalate to cloud-enhanced<br/>(severe incident)
+    CloudEnhanced --> Hybrid: Incident resolved<br/>(de-escalate)
+
+    CloudEnhanced --> LocalOnly: Full return to privacy<br/>(manual override)
+
+    note right of LocalOnly
+        DEFAULT MODE
+        99% of operations
+        Full privacy
+        Air-gapped capable
+    end note
+
+    note right of Hybrid
+        OPTIONAL MODE
+        Complex diagnostics
+        Sanitized logs only
+        Cloud planning + local execution
+    end note
+
+    note right of CloudEnhanced
+        RARE MODE
+        Severe incidents
+        Maximum assistance
+        Still sanitized + local execution
+    end note
