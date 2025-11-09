@@ -79,13 +79,13 @@ flowchart TD
     START[AI Proposes Action] --> PARSE[Parse Command]
     PARSE --> CHECK_POLICY{Matches CSE Policy?}
 
-    CHECK_POLICY -->|No policy match| DENY[❌ Auto-Deny<br/>Log to audit]
+    CHECK_POLICY -->|No policy match| DENY[ Auto-Deny<br/>Log to audit]
     CHECK_POLICY -->|Yes| CHECK_REDLINE{Redline Trigger?}
 
-    CHECK_REDLINE -->|Yes<br/>rm -rf, dd, mkfs, etc| REDLINE[🚨 REDLINE<br/>Block immediately<br/>Alert user<br/>Require manual review]
+    CHECK_REDLINE -->|Yes<br/>rm -rf, dd, mkfs, etc| REDLINE[ REDLINE<br/>Block immediately<br/>Alert user<br/>Require manual review]
     CHECK_REDLINE -->|No| CHECK_APPROVAL{Requires Approval?}
 
-    CHECK_APPROVAL -->|Yes| NOTIFY[📱 Send to Signal/Telegram<br/>Show command + context<br/>Start 120s timeout]
+    CHECK_APPROVAL -->|Yes| NOTIFY[ Send to Signal/Telegram<br/>Show command + context<br/>Start 120s timeout]
     CHECK_APPROVAL -->|No<br/>Auto-approve mode| VALIDATE[Validate command syntax]
 
     NOTIFY --> WAIT{User Response?}
@@ -99,7 +99,7 @@ flowchart TD
 
     DRY_RUN --> DRY_CHECK{Dry-run Success?}
     DRY_CHECK -->|No| DENY
-    DRY_CHECK -->|Yes| EXECUTE[✅ Execute Command]
+    DRY_CHECK -->|Yes| EXECUTE[ Execute Command]
 
     EXECUTE --> LOG[Log to audit trail<br/>Command + user + timestamp]
     LOG --> VERIFY[Verify execution result]
@@ -188,13 +188,13 @@ Local-first AI operations architecture showing privacy-preserving infrastructure
 
 ```mermaid
 flowchart TB
-    subgraph Internet["☁️ Internet (Optional)"]
+    subgraph Internet["️ Internet (Optional)"]
         ModelRepo[Model Updates<br/>Ollama Registry]
     end
 
-    subgraph Home_Network["🏠 Your Private Network<br/><b>EVERYTHING STAYS LOCAL</b>"]
+    subgraph Home_Network[" Your Private Network<br/><b>EVERYTHING STAYS LOCAL</b>"]
 
-        subgraph Local_AI["🤖 Local AI Layer (Air-Gap Compatible)"]
+        subgraph Local_AI[" Local AI Layer (Air-Gap Compatible)"]
             direction TB
             Ollama[Ollama Server<br/>localhost:11434]
 
@@ -207,7 +207,7 @@ flowchart TB
             Ollama --> Models
         end
 
-        subgraph Agent_Layer["🛡️ Specialized Agents (10 total)"]
+        subgraph Agent_Layer["️ Specialized Agents (10 total)"]
             direction LR
             HAValidator[ha-yaml-validator<br/>Prevents automation bugs]
             DockerTrouble[docker-troubleshooter<br/>Container diagnostics]
@@ -216,7 +216,7 @@ flowchart TB
             Other[+ 6 more agents...]
         end
 
-        subgraph CSE["🔐 CSE Guardrails<br/><b>Human-Gated Privileges</b>"]
+        subgraph CSE[" CSE Guardrails<br/><b>Human-Gated Privileges</b>"]
             direction TB
             Policy[CSE Policy Engine<br/>Time-boxed access]
             Audit[Audit Log<br/>Every action recorded]
@@ -226,7 +226,7 @@ flowchart TB
             Policy --> Runbooks
         end
 
-        subgraph MCP_Tools["🔧 MCP Tools (65 total - Local stdio transport)"]
+        subgraph MCP_Tools[" MCP Tools (65 total - Local stdio transport)"]
             direction LR
 
             subgraph Infrastructure["Infrastructure (7 Systems)"]
@@ -240,7 +240,7 @@ flowchart TB
             end
         end
 
-        subgraph Services["🖥️ Your Infrastructure"]
+        subgraph Services["️ Your Infrastructure"]
             direction LR
             Containers[Docker Containers]
             VMs[Proxmox VMs/LXCs]

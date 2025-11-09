@@ -5,7 +5,7 @@
 
 ---
 
-## 🎯 TL;DR
+##  TL;DR
 
 **MCP Homelab Repos**: Provide tools to connect AI to your infrastructure
 **AI-Ready Homelab Framework**: Provides methodology to operate your infrastructure with AI
@@ -16,19 +16,19 @@
 
 ---
 
-## 📊 Quick Comparison Matrix
+## Quick Comparison Matrix
 
 | Aspect | AI-Ready Homelab | bjeans/homelab-mcp | ai-stack-homelab |
 |--------|-----------------|-------------------|-----------------|
 | **What It Is** | Complete AI ops framework | MCP tool collection | Local AI deployment stack |
-| **MCP Tools** | ✅ 65 tools (7 systems) | ✅ 5 systems | ✅ Basic integration |
-| **SRE Governance** | ✅ STATUS/PENDING-WORK | ❌ None | ❌ None |
-| **Runbooks** | ✅ Agent-assisted | ❌ None | ❌ None |
-| **DR Testing** | ✅ Quarterly drills | ❌ None | ❌ Backups only |
-| **Incident Management** | ✅ Templates | ❌ None | ❌ None |
-| **CSE Guardrails** | ✅ Human-gated privileges | ❌ None | ❌ None |
-| **Privacy Positioning** | ✅ Privacy-first brand | ⚠️ Local-only | ⚠️ Local stack |
-| **Commercial Support** | ✅ Implementation services | ❌ None | ❌ None |
+| **MCP Tools** | [YES] 65 tools (7 systems) | [YES] 5 systems | [YES] Basic integration |
+| **SRE Governance** | [YES] STATUS/PENDING-WORK | [NO] None | [NO] None |
+| **Runbooks** | [YES] Agent-assisted | [NO] None | [NO] None |
+| **DR Testing** | [YES] Quarterly drills | [NO] None | [NO] Backups only |
+| **Incident Management** | [YES] Templates | [NO] None | [NO] None |
+| **CSE Guardrails** | [YES] Human-gated privileges | [NO] None | [NO] None |
+| **Privacy Positioning** | [YES] Privacy-first brand | [WARN] Local-only | [WARN] Local stack |
+| **Commercial Support** | [YES] Implementation services | [NO] None | [NO] None |
 | **Target User** | Operators, SMBs | Hobbyists | AI learners |
 | **License** | MIT (free) + commercial services | MIT (free only) | MIT (free only) |
 | **Documentation** | Complete methodology | Tool docs | Stack deployment |
@@ -36,26 +36,26 @@
 
 ---
 
-## 🔍 Detailed Comparison
+## Detailed Comparison
 
 ### 1. bjeans/homelab-mcp
 
 **Repository**: [github.com/bjeans/homelab-mcp](https://github.com/bjeans/homelab-mcp)
 
 **What They Do Well**:
-- ✅ Production-ready MCP servers for homelab infrastructure
-- ✅ Docker/Podman, Ollama, Pi-hole, Unifi, Ansible integration
-- ✅ Security checks and automated validation
-- ✅ Good documentation for their tools
+- [YES] Production-ready MCP servers for homelab infrastructure
+- [YES] Docker/Podman, Ollama, Pi-hole, Unifi, Ansible integration
+- [YES] Security checks and automated validation
+- [YES] Good documentation for their tools
 
 **What's Missing**:
-- ❌ **No operational methodology** - They give you tools, not procedures
-- ❌ **No SRE governance** - No STATUS.md, PENDING-WORK.md, incident tracking
-- ❌ **No runbooks** - No documented procedures for common operations
-- ❌ **No DR framework** - No disaster recovery testing or RTO/RPO measurement
-- ❌ **No CSE guardrails** - No human oversight for privileged operations
-- ❌ **No commercial support** - Community-only, no professional services
-- ❌ **No training** - Learn by trial and error
+- [NO] **No operational methodology** - They give you tools, not procedures
+- [NO] **No SRE governance** - No STATUS.md, PENDING-WORK.md, incident tracking
+- [NO] **No runbooks** - No documented procedures for common operations
+- [NO] **No DR framework** - No disaster recovery testing or RTO/RPO measurement
+- [NO] **No CSE guardrails** - No human oversight for privileged operations
+- [NO] **No commercial support** - Community-only, no professional services
+- [NO] **No training** - Learn by trial and error
 
 **Who Should Use It**:
 - Hobbyists who want to experiment with MCP
@@ -77,21 +77,21 @@
 **Repository**: [github.com/anthonyfoust/ai-stack-homelab](https://github.com/anthonyfoust/ai-stack-homelab)
 
 **What They Do Well**:
-- ✅ Complete local AI stack (Ollama, Open WebUI, n8n, LiteLLM)
-- ✅ Production-ready deployment
-- ✅ Automated backups
-- ✅ Security configuration
-- ✅ Family-safe setup
-- ✅ MCP integration included
+- [YES] Complete local AI stack (Ollama, Open WebUI, n8n, LiteLLM)
+- [YES] Production-ready deployment
+- [YES] Automated backups
+- [YES] Security configuration
+- [YES] Family-safe setup
+- [YES] MCP integration included
 
 **What's Missing**:
-- ❌ **No SRE governance** - No operational methodology
-- ❌ **No runbooks** - No procedures for operations
-- ❌ **No incident management** - No template for when things break
-- ❌ **No DR testing** - Backups exist, but no restore testing framework
-- ❌ **No CSE guardrails** - AI has raw access without human oversight
-- ❌ **No commercial support** - DIY only
-- ❌ **Not infrastructure-focused** - Built for AI learning, not ops
+- [NO] **No SRE governance** - No operational methodology
+- [NO] **No runbooks** - No procedures for operations
+- [NO] **No incident management** - No template for when things break
+- [NO] **No DR testing** - Backups exist, but no restore testing framework
+- [NO] **No CSE guardrails** - AI has raw access without human oversight
+- [NO] **No commercial support** - DIY only
+- [NO] **Not infrastructure-focused** - Built for AI learning, not ops
 
 **Who Should Use It**:
 - People wanting to learn about local AI
@@ -119,10 +119,10 @@
 - Ecosystem catalog (Kubernetes, ESXi, Cloudflare, Home Assistant, Docker, etc.)
 
 **What's Missing**:
-- ❌ **Not a framework** - Just a list of tools
-- ❌ **No guidance** - Doesn't tell you when/how to use tools
-- ❌ **No methodology** - No operational patterns
-- ❌ **No governance** - No SRE discipline
+- [NO] **Not a framework** - Just a list of tools
+- [NO] **No guidance** - Doesn't tell you when/how to use tools
+- [NO] **No methodology** - No operational patterns
+- [NO] **No governance** - No SRE discipline
 
 **Who Should Use It**:
 - Developers looking for specific MCP servers
@@ -138,7 +138,7 @@
 
 ---
 
-## 🎯 What Makes AI-Ready Homelab Different
+##  What Makes AI-Ready Homelab Different
 
 ### 1. Complete Operational Methodology (Not Just Tools)
 
@@ -253,7 +253,7 @@ Result: Working automation + documented procedure + audit log
 
 ---
 
-## 🏢 Industry Mapping (Why SRE Matters)
+## Industry Mapping (Why SRE Matters)
 
 ### What Competitors Give You
 
@@ -283,7 +283,7 @@ Result: Working automation + documented procedure + audit log
 
 ---
 
-## 👥 Target Audience Comparison
+## Target Audience Comparison
 
 ### bjeans/homelab-mcp
 
@@ -326,32 +326,32 @@ Result: Working automation + documented procedure + audit log
 
 ---
 
-## 🎓 When to Use What
+## When to Use What
 
 ### Use bjeans/homelab-mcp When:
-- ✅ You just need MCP tools for specific services
-- ✅ You're comfortable with DIY and community support
-- ✅ You don't need operational governance
-- ✅ You're experimenting, not running production
+- [YES] You just need MCP tools for specific services
+- [YES] You're comfortable with DIY and community support
+- [YES] You don't need operational governance
+- [YES] You're experimenting, not running production
 
 ### Use ai-stack-homelab When:
-- ✅ You want to learn about local AI
-- ✅ You have a Mac Mini M4
-- ✅ You need a family-safe AI setup
-- ✅ You're focused on AI, not infrastructure ops
+- [YES] You want to learn about local AI
+- [YES] You have a Mac Mini M4
+- [YES] You need a family-safe AI setup
+- [YES] You're focused on AI, not infrastructure ops
 
 ### Use AI-Ready Homelab When:
-- ✅ You want professional operational discipline
-- ✅ You need SRE governance (STATUS, PENDING-WORK, runbooks)
-- ✅ You want privacy-first AI with guardrails
-- ✅ You need DR testing and incident management
-- ✅ You want commercial support and training
-- ✅ You're building career-relevant skills
-- ✅ You're running SMB infrastructure
+- [YES] You want professional operational discipline
+- [YES] You need SRE governance (STATUS, PENDING-WORK, runbooks)
+- [YES] You want privacy-first AI with guardrails
+- [YES] You need DR testing and incident management
+- [YES] You want commercial support and training
+- [YES] You're building career-relevant skills
+- [YES] You're running SMB infrastructure
 
 ---
 
-## 💡 Can You Use Multiple?
+## Can You Use Multiple?
 
 **Yes! They're complementary.**
 
@@ -370,7 +370,7 @@ Result: Working automation + documented procedure + audit log
 
 ---
 
-## 🚀 Evolution Path
+## Evolution Path
 
 ### Phase 1: Tools (WHERE COMPETITORS ARE NOW)
 - Deploy MCP servers
@@ -397,7 +397,7 @@ Result: Working automation + documented procedure + audit log
 
 ---
 
-## 📊 Market Positioning
+## Market Positioning
 
 ```
         Low Complexity ←――――――――――→ High Complexity
@@ -418,7 +418,7 @@ Result: Working automation + documented procedure + audit log
 
 ---
 
-## ✅ Bottom Line
+## [YES] Bottom Line
 
 **MCP Homelab Repos Are Validating Your Thesis**:
 - Demand for AI-integrated homelab is REAL

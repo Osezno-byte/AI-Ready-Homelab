@@ -1,12 +1,12 @@
 ```mermaid
 flowchart TB
-    subgraph Internet["☁️ Internet (Optional)"]
+    subgraph Internet["Internet (Optional)"]
         ModelRepo[Model Updates<br/>Ollama Registry]
     end
 
-    subgraph Home_Network["🏠 Your Private Network<br/><b>EVERYTHING STAYS LOCAL</b>"]
+    subgraph Home_Network["Your Private Network<br/><b>EVERYTHING STAYS LOCAL</b>"]
 
-        subgraph Local_AI["🤖 Local AI Layer (Air-Gap Compatible)"]
+        subgraph Local_AI["Local AI Layer (Air-Gap Compatible)"]
             direction TB
             Ollama[Ollama Server<br/>localhost:11434]
 
@@ -19,7 +19,7 @@ flowchart TB
             Ollama --> Models
         end
 
-        subgraph Agent_Layer["🛡️ Specialized Agents (10 total)"]
+        subgraph Agent_Layer["Specialized Agents (10 total)"]
             direction LR
             HAValidator[ha-yaml-validator<br/>Prevents automation bugs]
             DockerTrouble[docker-troubleshooter<br/>Container diagnostics]
@@ -28,7 +28,7 @@ flowchart TB
             Other[+ 6 more agents...]
         end
 
-        subgraph CSE["🔐 CSE Guardrails<br/><b>Human-Gated Privileges</b>"]
+        subgraph CSE["CSE Guardrails<br/><b>Human-Gated Privileges</b>"]
             direction TB
             Policy[CSE Policy Engine<br/>Time-boxed access]
             Audit[Audit Log<br/>Every action recorded]
@@ -38,7 +38,7 @@ flowchart TB
             Policy --> Runbooks
         end
 
-        subgraph MCP_Tools["🔧 MCP Tools (65 total - Local stdio transport)"]
+        subgraph MCP_Tools["MCP Tools (65 total - Local stdio transport)"]
             direction LR
 
             subgraph Infrastructure["Infrastructure (7 Systems)"]
@@ -52,7 +52,7 @@ flowchart TB
             end
         end
 
-        subgraph Services["🖥️ Your Infrastructure"]
+        subgraph Services["Your Infrastructure"]
             direction LR
             Containers[Docker Containers]
             VMs[Proxmox VMs/LXCs]
@@ -195,12 +195,12 @@ Result (Logged in audit trail)
 
 | Feature | Local-Only | Hybrid | Cloud-Enhanced |
 |---------|-----------|--------|----------------|
-| **Internet Required** | ❌ No (optional for updates) | ⚠️ For planning/docs only | ✅ Yes |
-| **Data Exposure** | ✅ Zero | ⚠️ Planning data only | ⚠️ Full infrastructure |
-| **API Costs** | ✅ Free | 💰 Partial | 💰 Full |
-| **Model Capability** | ⚠️ Good (local 70B) | ✅ Best (cloud + local) | ✅ Best (cloud only) |
-| **Air-Gap Compatible** | ✅ Yes | ❌ No | ❌ No |
-| **Privacy** | ✅ 100% | ⚠️ 95% | ⚠️ 0% |
+| **Internet Required** | No (optional for updates) | For planning/docs only | Yes |
+| **Data Exposure** | Zero | Planning data only | Full infrastructure |
+| **API Costs** | Free | Partial | Full |
+| **Model Capability** | Good (local 70B) | Best (cloud + local) | Best (cloud only) |
+| **Air-Gap Compatible** | Yes | No | No |
+| **Privacy** | 100% | 95% | 0% |
 
 **Recommendation**: Start with Local-Only. Add Hybrid/Cloud only if you need advanced reasoning for non-sensitive tasks.
 
