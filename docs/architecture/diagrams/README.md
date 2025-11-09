@@ -1,6 +1,7 @@
 # Architecture Diagrams
 
-This page renders all architecture diagrams for the AI-Ready Homelab Framework.
+This page contains all architecture diagrams for the AI-Ready Homelab Framework.
+Each diagram is rendered directly on GitHub using Mermaid, and reflects the framework's core design patterns.
 
 ## Hybrid AI Architecture
 
