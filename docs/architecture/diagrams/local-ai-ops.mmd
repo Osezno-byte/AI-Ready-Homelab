@@ -1,0 +1,223 @@
+```mermaid
+flowchart TB
+    subgraph Internet["☁️ Internet (Optional)"]
+        ModelRepo[Model Updates<br/>Ollama Registry]
+    end
+
+    subgraph Home_Network["🏠 Your Private Network<br/><b>EVERYTHING STAYS LOCAL</b>"]
+
+        subgraph Local_AI["🤖 Local AI Layer (Air-Gap Compatible)"]
+            direction TB
+            Ollama[Ollama Server<br/>localhost:11434]
+
+            subgraph Models["AI Models (Local Storage)"]
+                LLaMA[LLaMA3.1 70B<br/>General ops]
+                Mistral[Mistral 8x22B<br/>Complex reasoning]
+                Qwen[Qwen2.5 72B<br/>Documentation]
+            end
+
+            Ollama --> Models
+        end
+
+        subgraph Agent_Layer["🛡️ Specialized Agents (10 total)"]
+            direction LR
+            HAValidator[ha-yaml-validator<br/>Prevents automation bugs]
+            DockerTrouble[docker-troubleshooter<br/>Container diagnostics]
+            BackupVal[backup-validator<br/>DR automation]
+            SecurityAud[security-auditor<br/>Compliance scanning]
+            Other[+ 6 more agents...]
+        end
+
+        subgraph CSE["🔐 CSE Guardrails<br/><b>Human-Gated Privileges</b>"]
+            direction TB
+            Policy[CSE Policy Engine<br/>Time-boxed access]
+            Audit[Audit Log<br/>Every action recorded]
+            Runbooks[Runbook References<br/>Required for approval]
+
+            Policy --> Audit
+            Policy --> Runbooks
+        end
+
+        subgraph MCP_Tools["🔧 MCP Tools (65 total - Local stdio transport)"]
+            direction LR
+
+            subgraph Infrastructure["Infrastructure (7 Systems)"]
+                Docker[Docker Manager<br/>8 tools]
+                HA[Home Assistant<br/>12 tools]
+                Frigate[Frigate NVR<br/>7 tools]
+                Proxmox[Proxmox<br/>8 tools]
+                pfSense[pfSense<br/>10 tools]
+                n8n[n8n<br/>8 tools]
+                DB[Database<br/>12 tools]
+            end
+        end
+
+        subgraph Services["🖥️ Your Infrastructure"]
+            direction LR
+            Containers[Docker Containers]
+            VMs[Proxmox VMs/LXCs]
+            Network[pfSense Firewall]
+            Automation[Home Assistant]
+            Monitoring[Frigate + n8n]
+        end
+
+        %% Connections
+        Local_AI --> Agent_Layer
+        Agent_Layer --> CSE
+        CSE --> MCP_Tools
+        MCP_Tools --> Services
+
+        %% Optional internet for model updates only
+        Internet -.->|Model Updates<br/>ONLY| Ollama
+    end
+
+    %% Styling
+    classDef privateZone fill:#e1f5e1,stroke:#2d5016,stroke-width:3px
+    classDef aiLayer fill:#fff3cd,stroke:#856404,stroke-width:2px
+    classDef secureLayer fill:#f8d7da,stroke:#721c24,stroke-width:2px
+    classDef toolLayer fill:#d1ecf1,stroke:#0c5460,stroke-width:2px
+    classDef internetOptional fill:#f0f0f0,stroke:#999,stroke-width:2px,stroke-dasharray: 5 5
+
+    class Home_Network privateZone
+    class Local_AI,Agent_Layer aiLayer
+    class CSE secureLayer
+    class MCP_Tools,Infrastructure toolLayer
+    class Internet,ModelRepo internetOptional
+```
+
+## Privacy-First AI Operations Architecture
+
+### Key Principles
+
+1. **Everything Stays Local**
+   - AI models run on your hardware
+   - MCP tools use local stdio transport
+   - No data leaves your network
+   - Works completely offline (air-gap compatible)
+
+2. **Human-Gated Privileges**
+   - CSE policy engine enforces boundaries
+   - All privileged operations require approval
+   - Audit log tracks every action
+   - Runbook references required for approval
+
+3. **Optional Internet Access**
+   - ONLY for model updates (pull new versions)
+   - Can be disabled for air-gapped environments
+   - No operational dependency on internet
+
+### Data Flow
+
+```
+User Request
+    ↓
+Local AI Model (Ollama)
+    ↓
+Specialized Agent (e.g., ha-yaml-validator)
+    ↓
+CSE Policy Check (Human approval if needed)
+    ↓
+MCP Tool (e.g., homeassistant-manager)
+    ↓
+Infrastructure (Home Assistant, Docker, etc.)
+    ↓
+Result (Logged in audit trail)
+```
+
+### What Stays Private
+
+**Your AI sees (but doesn't share)**:
+- Network topology and IP addresses
+- Service configurations and settings
+- System logs and error messages
+- Backup strategies and DR plans
+- Usage patterns and metrics
+
+**Why this matters**:
+- No cloud provider sees your data
+- No risk of training data leakage
+- No API metering or usage tracking
+- Full compliance with privacy regulations
+- Works in air-gapped/offline environments
+
+### Hardware Requirements
+
+**Minimum** (8GB model - llama3.1:8b or mistral:7b):
+- 16GB RAM
+- 20GB disk space
+- CPU inference (slower but works)
+
+**Recommended** (32-70B models):
+- 32-64GB RAM
+- 100GB disk space
+- NVIDIA GPU with 24GB+ VRAM (A5000, RTX 4090, etc.)
+
+**Optimal** (Multiple models):
+- 64-128GB RAM
+- 500GB SSD for models
+- NVIDIA GPU with 48GB+ VRAM (A6000, H100)
+
+### Cost Comparison
+
+**Cloud AI Ops** (Typical homelab usage):
+- API calls: $50-200/month ongoing
+- Year 1: $600-2,400
+- Year 2: $1,200-4,800
+- **Total 2 years**: $1,800-7,200
+
+**Local AI Ops** (One-time hardware):
+- Used GPU: $500-2,000 (RTX 3090/4090)
+- OR CPU-only: $0 (use existing hardware)
+- Ollama: FREE
+- Models: FREE
+- **Total**: $0-2,000 one-time, then FREE forever
+
+**ROI**: Local AI pays for itself in 3-10 months, then pure savings.
+
+### Security Benefits
+
+1. **No Data Exfiltration**
+   - Infrastructure secrets stay local
+   - No risk of cloud provider breach
+   - No terms-of-service changes affecting access
+
+2. **Compliance Simplicity**
+   - GDPR: Data never leaves EU (or your basement)
+   - SOC2: N/A (no third-party data processor)
+   - HIPAA: N/A (no PHI transmitted)
+
+3. **Audit Trail**
+   - Every AI action logged locally
+   - Full control over retention
+   - No subpoena risk from cloud provider
+
+### Deployment Modes Comparison
+
+| Feature | Local-Only | Hybrid | Cloud-Enhanced |
+|---------|-----------|--------|----------------|
+| **Internet Required** | ❌ No (optional for updates) | ⚠️ For planning/docs only | ✅ Yes |
+| **Data Exposure** | ✅ Zero | ⚠️ Planning data only | ⚠️ Full infrastructure |
+| **API Costs** | ✅ Free | 💰 Partial | 💰 Full |
+| **Model Capability** | ⚠️ Good (local 70B) | ✅ Best (cloud + local) | ✅ Best (cloud only) |
+| **Air-Gap Compatible** | ✅ Yes | ❌ No | ❌ No |
+| **Privacy** | ✅ 100% | ⚠️ 95% | ⚠️ 0% |
+
+**Recommendation**: Start with Local-Only. Add Hybrid/Cloud only if you need advanced reasoning for non-sensitive tasks.
+
+### Migration Path
+
+**From Cloud AI → Local AI** (Recommended):
+1. Install Ollama on your homelab
+2. Pull a model (llama3.1:8b for testing)
+3. Configure MCP tools to use local Ollama endpoint
+4. Test with non-critical operations
+5. Switch CSE policy to require local AI for infrastructure
+6. Keep cloud AI for planning/documentation (optional)
+
+**From Nothing → Local AI**:
+1. Follow [Local AI Setup Guide](../../guides/local-ai-setup.md)
+2. Deploy this repository's templates
+3. Configure 3 core agents (ha-yaml-validator, docker-troubleshooter, backup-validator)
+4. Start using AI for daily operations
+
+**Timeline**: 2-4 hours for basic setup, 1-2 days for complete integration.

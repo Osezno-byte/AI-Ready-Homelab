@@ -1,0 +1,61 @@
+flowchart LR
+    subgraph Internet
+        WAN[ISP]
+    end
+
+    WAN --> FW[pfSense Router<br/>10.27.27.1]
+
+    subgraph VLANs["Network Segmentation"]
+        V1[VLAN 1: LAN<br/>10.27.27.0/24<br/>Infrastructure]
+        V10[VLAN 10: HomeNet<br/>10.27.10.0/24<br/>Trusted Devices]
+        V20[VLAN 20: IoTNet<br/>10.27.20.0/24<br/>IoT Devices - ISOLATED]
+        V30[VLAN 30: GuestNet<br/>10.27.30.0/24<br/>Guest WiFi - ISOLATED]
+    end
+
+    FW <-- DHCP, DNS, Routing --> V1
+    FW <-- Segmented Rules --> V10
+    FW <-- Strict Isolation --> V20
+    FW <-- Internet Only --> V30
+
+    subgraph Hypervisor["Proxmox VE (10.27.27.10)"]
+        PVE[Proxmox Host]
+        MC[(VM: media-core<br/>10.27.27.251)]
+        DC[(VM: docker-core<br/>10.27.27.250)]
+        HALXC[HA Green<br/>10.27.27.11<br/>Dedicated Hardware]
+    end
+
+    V1 <--> PVE
+    PVE <--> MC
+    PVE <--> DC
+    V1 <--> HALXC
+
+    subgraph Services_media["Services: media-core"]
+        Frigate[Frigate NVR<br/>Object Detection]
+        Jellyfin[Jellyfin<br/>Media Server]
+        Sonarr[Sonarr/Radarr<br/>Media Automation]
+        Ollama[Ollama<br/>Local LLM]
+    end
+
+    subgraph Services_docker["Services: docker-core"]
+        MQTT[Mosquitto<br/>MQTT Broker]
+        NPM[Nginx Proxy Manager<br/>Reverse Proxy]
+        N8N[n8n<br/>Workflow Automation]
+        UptimeKuma[Uptime Kuma<br/>Monitoring]
+    end
+
+    MC --> Services_media
+    DC --> Services_docker
+
+    V20 --> Frigate
+    V10 --> Frigate
+    V1 --> Frigate
+
+    V1 <--> MQTT
+    V1 <--> NPM
+    V1 <--> N8N
+    V1 <--> Ollama
+
+    style FW fill:#f9f,stroke:#333,stroke-width:2px
+    style PVE fill:#bbf,stroke:#333,stroke-width:2px
+    style V20 fill:#faa,stroke:#333,stroke-width:2px
+    style V30 fill:#faa,stroke:#333,stroke-width:2px

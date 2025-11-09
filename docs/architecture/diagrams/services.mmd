@@ -1,0 +1,71 @@
+flowchart TB
+    subgraph AI_Layer["AI Integration Layer"]
+        MCP[Model Context Protocol<br/>65 Tools Across 7 Servers]
+        
+        subgraph Agents["Custom Specialized Agents (10 total)"]
+            AG1[ha-yaml-validator<br/>HA Automation Validation]
+            AG2[docker-troubleshooter<br/>Container Diagnostics]
+            AG3[doc-consolidator<br/>Documentation Maintenance]
+            AG4[network-diagnostician<br/>VLAN & Firewall Analysis]
+            AG5[backup-validator<br/>Backup Verification]
+            AG6[security-auditor<br/>Security Scanning]
+            AG7[database-optimizer<br/>DB Performance Tuning]
+            AG8[integration-validator<br/>Cross-Service Testing]
+            AG9[update-coordinator<br/>Update Planning]
+            AG10[performance-analyzer<br/>Resource Analysis]
+        end
+    end
+
+    MCP --> AG1
+    MCP --> AG2
+    MCP --> AG3
+    MCP --> AG4
+    MCP --> AG5
+    MCP --> AG6
+    MCP --> AG7
+    MCP --> AG8
+    MCP --> AG9
+    MCP --> AG10
+
+    subgraph Infrastructure["Infrastructure Access Points"]
+        HA[Home Assistant<br/>12 MCP Tools]
+        DOCKER[Docker<br/>8 MCP Tools]
+        FRIGATE[Frigate NVR<br/>7 MCP Tools]
+        PROXMOX[Proxmox<br/>8 MCP Tools]
+        PFSENSE[pfSense<br/>10 MCP Tools]
+        N8N_MCP[n8n<br/>8 MCP Tools]
+        DB[Databases<br/>12 MCP Tools]
+    end
+
+    AG1 --> HA
+    AG2 --> DOCKER
+    AG3 --> Docs[Documentation Repo]
+    AG4 --> PFSENSE
+    AG5 --> PROXMOX
+    AG6 --> SSH[SSH Audit & Config]
+    AG7 --> DB
+    AG8 --> HA
+    AG8 --> N8N_MCP
+    AG9 --> DOCKER
+    AG9 --> PROXMOX
+    AG10 --> DOCKER
+    AG10 --> FRIGATE
+
+    subgraph Automation["Automation & Monitoring"]
+        N8N_WORKFLOWS[n8n Workflows<br/>9 Active Workflows]
+        STATUS[STATUS.md<br/>Service Health Tracking]
+    end
+
+    AG1 -.->|Reports| N8N_WORKFLOWS
+    AG2 -.->|Reports| N8N_WORKFLOWS
+    AG3 -.->|Updates| STATUS
+    AG4 -.->|Reports| STATUS
+    AG5 -.->|Reports| N8N_WORKFLOWS
+    AG6 -.->|Reports| STATUS
+
+    N8N_WORKFLOWS -.->|Updates| STATUS
+
+    style MCP fill:#9f9,stroke:#333,stroke-width:3px
+    style Agents fill:#bbf,stroke:#333,stroke-width:2px
+    style Infrastructure fill:#ffd,stroke:#333,stroke-width:2px
+    style Automation fill:#faa,stroke:#333,stroke-width:2px

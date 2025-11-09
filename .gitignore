@@ -1,0 +1,44 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Sensitive files
+*.backup*
+*.bak
+*.old
+.backups/
+secrets/
+.env
+*.key
+*.pem
+
+# Personal documentation (users should create their own)
+STATUS.md
+PENDING-WORK.md
+INSTRUCTIONS.md
+
+# Private strategy documents (not for public repo)
+.private-docs/
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+dist/
+build/
+*.pyc
+__pycache__/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
