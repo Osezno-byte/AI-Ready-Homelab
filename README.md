@@ -467,22 +467,35 @@ See [LICENSE](LICENSE) for details.
 - **GitHub Issues**: Report bugs, request features
 - **Documentation**: Complete guides in [`docs/`](docs/)
 
-### Professional Services (Optional)
+This project is fully open-source and designed for self-guided adoption.
+Most users will implement the framework independently or with help from the community.
 
-**This framework is fully usable for free.** Professional services are optional and low-volume.
+For those who want a more structured rollout, optional support is available.
 
-**Local AI Conversion Package** - $497/$997
-- Turnkey local AI setup
-- Privacy-first by design
-- No cloud dependency
-- Expert implementation
+### Professional Support (Optional)
 
-**Implementation Consulting** - $150-250/hour
-- SRE governance setup
-- Custom agent development
-- Infrastructure review
+This framework is designed to be implemented independently.
+For users who prefer guided adoption or want help applying the SRE patterns to their own environment, a limited amount of consulting support is available.
 
-**More information**: Inquire via GitHub Discussions
+**Areas of Support**
+
+**Local AI Deployment**
+Installation, configuration, and optimization of local models (Ollama, MCP tools, n8n sanitization workflows) with a privacy-first approach.
+
+**SRE Governance Setup**
+Assistance establishing STATUS cadence, verification windows, DR testing, and runbook patterns tailored to your infrastructure.
+
+**Homelab Architecture Review**
+A lightweight assessment of service layout, segmentation, logging, backup coverage, and operational reliability.
+
+**CSE Policy and Guardrails**
+Help defining safe boundaries for automation, including approval workflows, redlines, and operational policies.
+
+Support is collaborative, scoped per request, and intended to help users who want a structured path into the framework.
+To inquire, open a private thread in GitHub Discussions describing your homelab, goals, and any specific areas where you want help.
+
+If you prefer to learn independently, the documentation, diagrams, and STATUS workflow are enough to implement the full framework.
+Support is available only for those who want additional guidance or a second set of eyes on their environment.
 
 ---
 

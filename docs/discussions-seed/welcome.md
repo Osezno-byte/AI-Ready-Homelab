@@ -9,3 +9,26 @@ If you're new, start with:
 * The diagram gallery
 
 Feel free to introduce yourself in Discussions and share your implementation journey.
+
+---
+
+## How to Request Support
+
+If you'd like assistance, open a private thread in GitHub Discussions with the following:
+
+**Environment Summary**
+- Hardware (CPU/GPU, RAM)
+- Core services (e.g., Home Assistant, Docker, Proxmox)
+- Current pain points
+
+**Goals**
+What you want to achieve and which parts of the framework interest you
+
+**Preferred Scope**
+- Architecture review
+- STATUS cadence setup
+- DR testing guidance
+- Local AI deployment
+- CSE guardrail setup
+
+You will receive a scoped response and next steps.
